@@ -59,8 +59,8 @@ public class LoginSteps {
         signInButton.click();
     }
 
-    @Then("the user should see the {string}")
-    public void the_user_should_see_the_result(String result) {
+    @Then("the user should see the shop page")
+    public void the_user_should_see_the_shop_page() {
         String getShopURL = driver.getCurrentUrl();
         System.out.println("The shop URL is " + getShopURL);
         Assert.assertTrue(getShopURL.contains("shop"));
