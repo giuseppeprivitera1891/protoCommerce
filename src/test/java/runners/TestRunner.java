@@ -1,5 +1,6 @@
 package runners;
 
+import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
@@ -14,6 +15,6 @@ import io.cucumber.testng.CucumberOptions;
         } // Reporting option
 )
 
-public class TestRunner {
+public class TestRunner extends AbstractTestNGCucumberTests {
 
 }
