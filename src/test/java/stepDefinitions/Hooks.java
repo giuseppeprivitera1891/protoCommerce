@@ -37,7 +37,7 @@ public class Hooks {
             // Add the screenshot in the report Cucumber
             scenario.attach(screenshot, "image/png", "screenshot-failed");
 
-            // Optional: save the screenshot on local system too
+            // Optional: save the screenshot on local system
             saveScreenshotToFile(screenshot, scenario.getName());
         }
     }
