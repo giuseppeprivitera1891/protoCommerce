@@ -45,10 +45,10 @@ public class Hooks {
     private void saveScreenshotToFile(byte[] screenshot, String scenarioName) {
         try {
             String sanitizedScenarioName = scenarioName.replaceAll("[^a-zA-Z0-9\\-]", "_");
-            Path dest = Paths.get("target/screenshots/" + sanitizedScenarioName + ".png");
-            Files.createDirectories(dest.getParent());
-            Files.write(dest, screenshot);
-            System.out.println("Screenshot saved in: " + dest.toAbsolutePath());
+            Path destination = Paths.get("target/screenshots/" + sanitizedScenarioName + ".png");
+            Files.createDirectories(destination.getParent());
+            Files.write(destination, screenshot);
+            System.out.println("Screenshot saved in: " + destination.toAbsolutePath());
         } catch (IOException e) {
             System.err.println("Error saving screenshot: " + e.getMessage());
         }
