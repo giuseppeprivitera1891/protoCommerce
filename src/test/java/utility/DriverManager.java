@@ -7,7 +7,7 @@ public class DriverManager {
     private static WebDriver driver;
 
     // Method to get the driver instance
-    public static WebDriver getDriver() {
+    public static void initDriver() {
         if (driver == null) {
             // Initialize the driver
             driver = new ChromeDriver();
@@ -15,6 +15,9 @@ public class DriverManager {
             // Basic configuration
             driver.manage().window().maximize();
         }
+    }
+
+    public static WebDriver getDriver() {
         return driver;
     }
 
