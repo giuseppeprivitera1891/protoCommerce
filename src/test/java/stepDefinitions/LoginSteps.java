@@ -4,12 +4,11 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utility.DriverManager;
@@ -19,6 +18,7 @@ import java.time.Duration;
 public class LoginSteps {
     private final WebDriver driver = DriverManager.getDriver();
     String userTypeLabel = "User";
+    String expectedTextAlert = "You will be limited to only fewer functionalities of the app. Proceed?";
 
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page()  {
@@ -36,17 +36,16 @@ public class LoginSteps {
     }
 
     @And("selects the type of user and accept the terms")
-    public void selects_the_type_of_user_and_accept_the_terms() {
+    public void selects_the_type_of_user_and_accept_the_terms() throws InterruptedException {
         String userRadioLabel = driver.findElement(By.cssSelector("label:nth-child(2) span:nth-child(1)")).getText();
         Assert.assertEquals(userRadioLabel, userTypeLabel);
         WebElement userRadioButton = driver.findElement(By.cssSelector("input[value='user']"));
         userRadioButton.click();
         Assert.assertTrue(userRadioButton.isSelected());
-        Alert alert = driver.switchTo().alert();
-        alert.accept();
-        WebElement selectRole = driver.findElement(By.className("form-control"));
-        Select select = new Select(selectRole);
-        Assert.assertTrue(select.getFirstSelectedOption().isDisplayed());
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("modal-content")));
+        driver.findElement(By.id("okayBtn")).click();
+
         WebElement termCheckbox = driver.findElement(By.id("terms"));
         termCheckbox.click();
         Assert.assertTrue(termCheckbox.isSelected());

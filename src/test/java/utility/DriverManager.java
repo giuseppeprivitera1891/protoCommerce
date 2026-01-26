@@ -2,6 +2,7 @@ package utility;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverManager {
     private static WebDriver driver;
@@ -10,7 +11,7 @@ public class DriverManager {
     public static void initDriver() {
         if (driver == null) {
             // Initialize the driver
-            driver = new ChromeDriver();
+            driver = new FirefoxDriver();
 
             // Basic configuration
             driver.manage().window().maximize();
