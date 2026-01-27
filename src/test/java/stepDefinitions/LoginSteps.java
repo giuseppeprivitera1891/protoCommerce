@@ -55,6 +55,9 @@ public class LoginSteps {
         // Checks if the actual result is the same of expected result
         Assert.assertEquals(actualTextModal, expectedTextAlert);
         driver.findElement(By.id("okayBtn")).click();
+        // Waits the modal is invisible
+        WebDriverWait waitCloseModal = new WebDriverWait(driver, Duration.ofSeconds(5));
+        waitCloseModal.until(ExpectedConditions.invisibilityOfElementLocated(By.className("modal-content")));
         // Gets the checkbox
         WebElement termCheckbox = driver.findElement(By.id("terms"));
         // // Waits the checkbox is clickable
