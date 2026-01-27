@@ -11,7 +11,7 @@ import utility.DriverManager;
 import java.util.Arrays;
 import java.util.List;
 
-public class ShopDefinitions {
+public class ShopSteps {
     private final WebDriver driver = DriverManager.getDriver();
     List<String> myProduct = Arrays.asList("iphone X", "Nokia Edge");
 
