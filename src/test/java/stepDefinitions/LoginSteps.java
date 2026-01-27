@@ -36,7 +36,7 @@ public class LoginSteps {
     }
 
     @And("selects the type of user and accept the terms")
-    public void selects_the_type_of_user_and_accept_the_terms() throws InterruptedException {
+    public void selects_the_type_of_user_and_accept_the_terms() {
         String userRadioLabel = driver.findElement(By.cssSelector("label:nth-child(2) span:nth-child(1)")).getText();
         Assert.assertEquals(userRadioLabel, userTypeLabel);
         WebElement userRadioButton = driver.findElement(By.cssSelector("input[value='user']"));
@@ -44,6 +44,9 @@ public class LoginSteps {
         Assert.assertTrue(userRadioButton.isSelected());
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("modal-content")));
+        String actualTextModal = driver.findElement(By.cssSelector("div[class='modal-body'] p")).getText();
+        System.out.println("The text of the modal is " + actualTextModal);
+        Assert.assertEquals(actualTextModal, expectedTextAlert);
         driver.findElement(By.id("okayBtn")).click();
 
         WebElement termCheckbox = driver.findElement(By.id("terms"));
