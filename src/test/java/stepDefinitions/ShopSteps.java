@@ -21,6 +21,7 @@ public class ShopSteps {
     // List of our products
     List<String> myProduct = Arrays.asList("iphone X", "Nokia Edge");
     String expectedCheckoutTextButton = "Checkout ( 2 )\n(current)";
+    String expectedProductTableHead = "Product";
 
     @Given("the user is on the {string}")
     public void the_user_is_on_the_shopPage(String shopPage) {
@@ -58,9 +59,9 @@ public class ShopSteps {
 
     @Then("the user should see the cart page")
     public void the_user_should_see_the_cart_page() {
-        String actualProductHeader = driver.findElement(By.xpath("//th[normalize-space()='Product']")).getText();
+        String actualProductTableHead = driver.findElement(By.xpath("//th[normalize-space()='Product']")).getText();
         WebDriverWait waitTable = new WebDriverWait(driver, Duration.ofSeconds(2));
         waitTable.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//th[normalize-space()='Product']")));
-        Assert.assertEquals(actualProductHeader, "Product");
+        Assert.assertEquals(actualProductTableHead, expectedProductTableHead);
     }
 }
