@@ -13,6 +13,7 @@ import org.testng.Assert;
 import utility.DriverManager;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class LoginSteps {
     private final WebDriver driver = DriverManager.getDriver();
@@ -36,7 +37,7 @@ public class LoginSteps {
     }
 
     @And("selects the type of user and accept the terms")
-    public void selects_the_type_of_user_and_accept_the_terms() {
+    public void selects_the_type_of_user_and_accept_the_terms() throws InterruptedException {
         // Gets the "User" label text
         String userRadioLabel = driver.findElement(By.cssSelector("label:nth-child(2) span:nth-child(1)")).getText();
         // Checks if the actual result is the same of expected result
@@ -48,7 +49,7 @@ public class LoginSteps {
         Assert.assertTrue(userRadioButton.isSelected());
         // Waits the modal is visible
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("modal-content")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("myModal")));
         // Gets the text of the modal
         String actualTextModal = driver.findElement(By.cssSelector("div[class='modal-body'] p")).getText();
         // Prints the text of the modal
@@ -58,12 +59,13 @@ public class LoginSteps {
         driver.findElement(By.id("okayBtn")).click();
         // Waits the modal is invisible
         WebDriverWait waitCloseModal = new WebDriverWait(driver, Duration.ofSeconds(1));
-        waitCloseModal.until(ExpectedConditions.invisibilityOfElementLocated(By.className("modal-content")));
+        waitCloseModal.until(ExpectedConditions.invisibilityOfElementLocated(By.id("myModal")));
         // Gets the checkbox
         WebElement termCheckbox = driver.findElement(By.id("terms"));
         // // Waits the checkbox is clickable
-        WebDriverWait waitCheckbox = new WebDriverWait(driver, Duration.ofSeconds(5));
-        waitCheckbox.until(ExpectedConditions.elementToBeClickable(termCheckbox));
+       WebDriverWait waitCheckbox = new WebDriverWait(driver, Duration.ofSeconds(30));
+       waitCheckbox.pollingEvery(Duration.ofSeconds(2));
+       waitCheckbox.until(ExpectedConditions.visibilityOfElementLocated(By.id("terms")));
         termCheckbox.click();
         // Checks if the checkbox is selected
         Assert.assertTrue(termCheckbox.isSelected());
