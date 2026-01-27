@@ -51,5 +51,7 @@ public class ShopSteps {
         String actualCheckoutButton = driver.findElement(By.xpath("(//a[@class='nav-link btn btn-primary'])[1]")).getText();
         System.out.println("The text of checkout button is " + actualCheckoutButton);
         Assert.assertEquals(actualCheckoutButton, expectedCheckoutTextButton);
+        WebElement checkoutButton = driver.findElement(By.xpath("(//a[@class='nav-link btn btn-primary'])[1]"));
+        checkoutButton.click();
     }
 }
