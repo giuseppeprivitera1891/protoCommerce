@@ -13,6 +13,7 @@ import org.testng.Assert;
 import utility.DriverManager;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class LoginSteps {
     private final WebDriver driver = DriverManager.getDriver();
@@ -57,12 +58,13 @@ public class LoginSteps {
         Assert.assertEquals(actualTextModal, expectedTextAlert);
         driver.findElement(By.id("okayBtn")).click();
         // Waits the modal is invisible
-       WebDriverWait waitCloseModal = new WebDriverWait(driver, Duration.ofSeconds(1));
-       waitCloseModal.until(ExpectedConditions.invisibilityOfElementLocated(By.id("myModal")));
+        WebDriverWait waitCloseModal = new WebDriverWait(driver, Duration.ofSeconds(1));
+        waitCloseModal.until(ExpectedConditions.invisibilityOfElementLocated(By.id("myModal")));
         // Gets the checkbox
         WebElement termCheckbox = driver.findElement(By.id("terms"));
         // // Waits the checkbox is clickable
-       WebDriverWait waitCheckbox = new WebDriverWait(driver, Duration.ofSeconds(5));
+       WebDriverWait waitCheckbox = new WebDriverWait(driver, Duration.ofSeconds(30));
+       waitCheckbox.pollingEvery(Duration.ofSeconds(2));
        waitCheckbox.until(ExpectedConditions.visibilityOfElementLocated(By.id("terms")));
         termCheckbox.click();
         // Checks if the checkbox is selected
