@@ -30,7 +30,6 @@ public class ShopSteps {
     @When("the user adds the products")
     public void the_user_adds_the_products() {
         List<WebElement> products = driver.findElements(By.xpath("//div[@class='card h-100']"));
-        WebElement addButton = driver.findElement(By.xpath("//button[@class='btn btn-info'][normalize-space()='Add']"));
 
         for (String addProduct : myProduct) {
             for (WebElement product : products) {
