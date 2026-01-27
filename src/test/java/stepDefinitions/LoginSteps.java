@@ -18,6 +18,7 @@ public class LoginSteps {
     private final WebDriver driver = DriverManager.getDriver();
     String userTypeLabel = "User";
     String expectedTextAlert = "You will be limited to only fewer functionalities of the app. Proceed?";
+    String expectedTitlePage = "ProtoCommerce";
 
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page()  {
@@ -46,7 +47,7 @@ public class LoginSteps {
         // Checks if the radiobutton is selected
         Assert.assertTrue(userRadioButton.isSelected());
         // Waits the modal is visible
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("modal-content")));
         // Gets the text of the modal
         String actualTextModal = driver.findElement(By.cssSelector("div[class='modal-body'] p")).getText();
@@ -77,8 +78,10 @@ public class LoginSteps {
 
     @Then("the user should see the shop page")
     public void the_user_should_see_the_shop_page() {
-        String getShopURL = driver.getCurrentUrl();
-        System.out.println("The shop URL is " + getShopURL);
-        Assert.assertTrue(getShopURL.contains("shop"));
+        WebDriverWait waitLoaPage = new WebDriverWait(driver, Duration.ofSeconds(5));
+        waitLoaPage.until(ExpectedConditions.titleIs(expectedTitlePage));
+        String titleShopPage = driver.getTitle();
+        System.out.println("The title of the shop page is " + titleShopPage);
+        Assert.assertEquals(titleShopPage, expectedTitlePage);
     }
 }
