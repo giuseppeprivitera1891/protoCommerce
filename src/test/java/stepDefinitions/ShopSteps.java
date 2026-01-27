@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
@@ -16,7 +17,9 @@ import java.util.List;
 
 public class ShopSteps {
     private final WebDriver driver = DriverManager.getDriver();
+    // List of our products
     List<String> myProduct = Arrays.asList("iphone X", "Nokia Edge");
+    String expectedCheckoutTextButton = "Checkout ( 2 )";
 
     @Given("the user is on the {string}")
     public void the_user_is_on_the_shopPage(String shopPage) {
@@ -29,6 +32,7 @@ public class ShopSteps {
 
     @When("the user adds the products")
     public void the_user_adds_the_products() {
+        // Gets the list of products
         List<WebElement> products = driver.findElements(By.xpath("//div[@class='card h-100']"));
 
         for (String addProduct : myProduct) {
@@ -40,5 +44,12 @@ public class ShopSteps {
                 }
             }
         }
+    }
+
+    @And("clicks on the checkout button")
+    public void clicks_on_the_checkout_button() {
+        String actualCheckoutButton = driver.findElement(By.xpath("(//a[@class='nav-link btn btn-primary'])[1]")).getText();
+        System.out.println("The text of checkout button is " + actualCheckoutButton);
+        Assert.assertEquals(actualCheckoutButton, expectedCheckoutTextButton);
     }
 }
