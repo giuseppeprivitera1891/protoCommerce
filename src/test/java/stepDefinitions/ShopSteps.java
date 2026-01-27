@@ -2,6 +2,7 @@ package stepDefinitions;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -19,7 +20,7 @@ public class ShopSteps {
     private final WebDriver driver = DriverManager.getDriver();
     // List of our products
     List<String> myProduct = Arrays.asList("iphone X", "Nokia Edge");
-    String expectedCheckoutTextButton = "Checkout ( 2 )";
+    String expectedCheckoutTextButton = "Checkout ( 2 )\n(current)";
 
     @Given("the user is on the {string}")
     public void the_user_is_on_the_shopPage(String shopPage) {
@@ -53,5 +54,13 @@ public class ShopSteps {
         Assert.assertEquals(actualCheckoutButton, expectedCheckoutTextButton);
         WebElement checkoutButton = driver.findElement(By.xpath("(//a[@class='nav-link btn btn-primary'])[1]"));
         checkoutButton.click();
+    }
+
+    @Then("the user should see the cart page")
+    public void the_user_should_see_the_cart_page() {
+        String actualProductHeader = driver.findElement(By.xpath("//th[normalize-space()='Product']")).getText();
+        WebDriverWait waitTable = new WebDriverWait(driver, Duration.ofSeconds(2));
+        waitTable.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//th[normalize-space()='Product']")));
+        Assert.assertEquals(actualProductHeader, "Product");
     }
 }
