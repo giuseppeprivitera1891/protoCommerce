@@ -48,8 +48,8 @@ public class ShopSteps {
         }
     }
 
-    @And("clicks on the checkout button")
-    public void clicks_on_the_checkout_button() {
+    @And("clicks on the cart button")
+    public void clicks_on_the_cart_button() {
         String actualCheckoutButton = driver.findElement(By.xpath("(//a[@class='nav-link btn btn-primary'])[1]")).getText();
         System.out.println("The text of checkout button is " + actualCheckoutButton);
         Assert.assertEquals(actualCheckoutButton, expectedCheckoutTextButton);
