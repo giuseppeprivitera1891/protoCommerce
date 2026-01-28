@@ -7,8 +7,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utility.DriverManager;
+
+import java.time.Duration;
 
 public class CartSteps {
     private final WebDriver driver = DriverManager.getDriver();
@@ -24,7 +28,9 @@ public class CartSteps {
 
     @When("the user adds the quantity for a product")
     public void the_user_adds_the_quantity_for_a_product() {
-        WebElement firstProductQuantity = driver.findElement(By.xpath("(//input[@id='exampleInputEmail1'])[1])"));
+        WebDriverWait waitFirstProductQuantity = new WebDriverWait(driver, Duration.ofSeconds(1));
+        waitFirstProductQuantity.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//input[@id='exampleInputEmail1'])/[1]")));
+        WebElement firstProductQuantity = driver.findElement(By.xpath("(//input[@id='exampleInputEmail1'])/[1]"));
         firstProductQuantity.sendKeys(Keys.BACK_SPACE);
         firstProductQuantity.sendKeys("3");
         firstProductQuantity.getText();
@@ -42,15 +48,15 @@ public class CartSteps {
         System.out.println("The actual total price first product: " + actualTotalPriceFirstProduct);
         Assert.assertEquals(actualTotalPriceFirstProduct, expectedTotalPriceFirstProduct);
         // Gets the quantity of the second product and checks it with expected quantity
-        String secondProductQuantity = driver.findElement(By.xpath("(//input[@id='exampleInputEmail1'])[2])")).getText();
+        String secondProductQuantity = driver.findElement(By.xpath("(//input[@id='exampleInputEmail1'])/[2])")).getText();
         System.out.println("The second product quantity: " + secondProductQuantity);
         Assert.assertEquals(secondProductQuantity, expectedSecondProductQuantity);
         // Gets the unit price of the second product and checks it with expected unit price
-        String actualUnitPriceSecondProduct = driver.findElement(By.xpath("(//strong[text() = '₹. 65000'])[1]")).getText();
+        String actualUnitPriceSecondProduct = driver.findElement(By.xpath("(//strong[text() = '₹. 65000'])/[1]")).getText();
         System.out.println("The actual unit price second product: " + actualUnitPriceSecondProduct);
         Assert.assertEquals(actualUnitPriceSecondProduct, expectedUnitPriceSecondProduct);
         // Gets the total price of the second product and checks it with expected total price
-        String actualTotalPriceSecondProduct = driver.findElement(By.xpath("(//strong[text() = '₹. 65000'])[2]")).getText();
+        String actualTotalPriceSecondProduct = driver.findElement(By.xpath("(//strong[text() = '₹. 65000'])/[2]")).getText();
         System.out.println("The actual total price of the second product: " + actualTotalPriceSecondProduct);
         Assert.assertEquals(actualTotalPriceSecondProduct, expectedTotalPriceSecondProduct);
         // Gets the total price and checks it with expected total price
