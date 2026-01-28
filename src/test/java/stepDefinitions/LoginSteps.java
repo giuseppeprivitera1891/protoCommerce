@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import pageObjects.LoginPage;
 import utility.DriverManager;
 
 import java.time.Duration;
@@ -28,12 +29,8 @@ public class LoginSteps {
 
     @When("the user enters valid {string} and {string}")
     public void the_user_enters_valid_username_and_password (String username, String password) {
-        WebElement usernameField = driver.findElement(By.id("username"));
-        usernameField.sendKeys(username);
-        System.out.println("The username is " + usernameField);
-        WebElement passwordField = driver.findElement(By.id("password"));
-        passwordField.sendKeys(password);
-        System.out.println("The password is " + passwordField);
+        LoginPage loginPage = new LoginPage();
+        loginPage.login(username, password);
     }
 
     @And("selects the type of user and accept the terms")
