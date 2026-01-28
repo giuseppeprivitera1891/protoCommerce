@@ -3,6 +3,8 @@ package utility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.time.Duration;
+
 public class DriverManager {
     private static WebDriver driver;
 
@@ -11,7 +13,6 @@ public class DriverManager {
         if (driver == null) {
             // Initialize the driver
             driver = new FirefoxDriver();
-
             // Basic configuration
             driver.manage().window().maximize();
         }
