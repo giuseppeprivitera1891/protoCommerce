@@ -12,7 +12,6 @@ import java.time.Duration;
 public class LoginPage {
     public WebDriver driver = DriverManager.getDriver();
     WebDriverWait wait;
-    WebDriverWait waitPolling;
     WebElement userRadioButtonClick;
     WebElement termCheckbox;
     WebElement signInButton;
@@ -20,6 +19,10 @@ public class LoginPage {
     String userRadioLabel;
     String actualTextModal;
     String expectedTextAlert = "You will be limited to only fewer functionalities of the app. Proceed?";
+    int oneSecond = 1;
+    int twoSeconds = 2;
+    int fiveSeconds = 5;
+    int thirtySeconds = 30;
 
     By username = By.id("username");
     By password = By.id("password");
@@ -47,7 +50,7 @@ public class LoginPage {
         // Checks if the radiobutton is selected
         Assert.assertTrue(userRadioButtonClick.isSelected());
         // Waits the modal is visible
-        wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(oneSecond));
         wait.until(ExpectedConditions.visibilityOfElementLocated(modal));
         // Gets the text of the modal
         actualTextModal = driver.findElement(By.cssSelector("div[class='modal-body'] p")).getText();
@@ -64,9 +67,9 @@ public class LoginPage {
         // Gets the checkbox
         termCheckbox = driver.findElement(terms);
         // Waits the checkbox i s clickable
-        waitPolling = new WebDriverWait(driver, Duration.ofSeconds(30));
-        waitPolling.pollingEvery(Duration.ofSeconds(2));
-        waitPolling.until(ExpectedConditions.visibilityOfElementLocated(terms));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(thirtySeconds));
+        wait.pollingEvery(Duration.ofSeconds(twoSeconds));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(terms));
         termCheckbox.click();
         // Checks if the checkbox is selected
         Assert.assertTrue(termCheckbox.isSelected());
@@ -76,5 +79,13 @@ public class LoginPage {
         signInButton = driver.findElement(submitButton);
         Assert.assertTrue(signInButton.isDisplayed());
         signInButton.click();
+    }
+
+    public void shopPage() {
+        wait = new WebDriverWait(driver, Duration.ofSeconds(fiveSeconds));
+        wait.until(ExpectedConditions.titleIs(expectedTitlePage));
+        String titleShopPage = driver.getTitle();
+        System.out.println("The title of the shop page is " + titleShopPage);
+        Assert.assertEquals(titleShopPage, expectedTitlePage);
     }
 }
