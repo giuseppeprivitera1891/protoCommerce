@@ -19,6 +19,7 @@ public class LoginPage {
     String userRadioLabel;
     String actualTextModal;
     String expectedTextAlert = "You will be limited to only fewer functionalities of the app. Proceed?";
+    String expectedTitlePage = "ProtoCommerce";
     int oneSecond = 1;
     int twoSeconds = 2;
     int fiveSeconds = 5;
