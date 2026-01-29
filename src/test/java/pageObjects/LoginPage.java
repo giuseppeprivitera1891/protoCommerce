@@ -15,6 +15,7 @@ public class LoginPage {
     WebDriverWait waitPolling;
     WebElement userRadioButtonClick;
     WebElement termCheckbox;
+    WebElement signInButton;
     String userTypeLabel = "User";
     String userRadioLabel;
     String actualTextModal;
@@ -27,6 +28,7 @@ public class LoginPage {
     By modal = By.id("myModal");
     By okayModalButton = By.id("okayBtn");
     By terms = By.id("terms");
+    By submitButton = By.id("signInBtn");
 
 
     public void login(String user, String pass) {
@@ -68,5 +70,11 @@ public class LoginPage {
         termCheckbox.click();
         // Checks if the checkbox is selected
         Assert.assertTrue(termCheckbox.isSelected());
+    }
+
+    public void clickSubmitButton() {
+        signInButton = driver.findElement(submitButton);
+        Assert.assertTrue(signInButton.isDisplayed());
+        signInButton.click();
     }
 }
