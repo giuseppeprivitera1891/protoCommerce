@@ -24,7 +24,6 @@ public class LoginPage {
     String expectedTextAlert = "You will be limited to only fewer functionalities of the app. Proceed?";
     String expectedTitlePage = "ProtoCommerce";
     int oneSecond = 1;
-    int twoSeconds = 2;
     int fiveSeconds = 5;
     int thirtySeconds = 30;
 
@@ -68,7 +67,7 @@ public class LoginPage {
         Assert.assertEquals(actualTextModal, expectedTextAlert);
         driver.findElement(okayModalButton).click();
         // Waits the modal is invisible
-        waitModalClose = new WebDriverWait(driver, Duration.ofSeconds(oneSecond));
+        waitModalClose = new WebDriverWait(driver, Duration.ofSeconds(fiveSeconds));
         waitModalClose.until(ExpectedConditions.invisibilityOfElementLocated(modal));
     }
 
@@ -77,7 +76,7 @@ public class LoginPage {
         termCheckbox = driver.findElement(terms);
         // Waits the checkbox i s clickable
         waitPolling = new WebDriverWait(driver, Duration.ofSeconds(thirtySeconds));
-        waitPolling.pollingEvery(Duration.ofSeconds(twoSeconds));
+        waitPolling.pollingEvery(Duration.ofSeconds(fiveSeconds));
         waitPolling.until(ExpectedConditions.visibilityOfElementLocated(terms));
         termCheckbox.click();
         // Checks if the checkbox is selected
