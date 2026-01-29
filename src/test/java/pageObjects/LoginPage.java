@@ -33,7 +33,11 @@ public class LoginPage {
     By okayModalButton = By.id("okayBtn");
     By terms = By.id("terms");
     By submitButton = By.id("signInBtn");
-
+    
+    
+    public void getUrl(String url) {
+        driver.get(url);
+    }
 
     public void login(String user, String pass) {
         driver.findElement(username).sendKeys(user);

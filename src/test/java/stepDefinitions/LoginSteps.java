@@ -8,10 +8,11 @@ import pageObjects.LoginPage;
 
 public class LoginSteps {
     LoginPage loginPage = new LoginPage();
+    String url = "http://localhost/litecart/en/login";
 
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page()  {
-        driver.get("https://rahulshettyacademy.com/loginpagePractise/");
+        loginPage.getUrl(url);
     }
 
     @When("the user enters valid {string} and {string}")
