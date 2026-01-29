@@ -8,7 +8,7 @@ import pageObjects.LoginPage;
 
 public class LoginSteps {
     LoginPage loginPage = new LoginPage();
-    String url = "http://localhost/litecart/en/login";
+    String url = "https://rahulshettyacademy.com/loginpagePractise/";
 
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page()  {
