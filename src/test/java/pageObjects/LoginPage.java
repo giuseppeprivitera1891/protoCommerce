@@ -7,15 +7,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utility.DriverManager;
-
 import java.time.Duration;
 
 public class LoginPage {
-    private final WebDriver driver = DriverManager.getDriver();
+    public WebDriver driver = DriverManager.getDriver();
     WebDriverWait wait;
+    WebDriverWait waitPolling;
+    WebElement userRadioButtonClick;
+    WebElement termCheckbox;
     String userTypeLabel = "User";
     String userRadioLabel;
-    WebElement userRadioButtonClick;
     String actualTextModal;
     String expectedTextAlert = "You will be limited to only fewer functionalities of the app. Proceed?";
 
@@ -25,6 +26,7 @@ public class LoginPage {
     By userRadioButton = By.cssSelector("input[value='user']");
     By modal = By.id("myModal");
     By okayModalButton = By.id("okayBtn");
+    By terms = By.id("terms");
 
 
     public void login(String user, String pass) {
@@ -57,6 +59,14 @@ public class LoginPage {
     }
 
     public void acceptTheTerms() {
-
+        // Gets the checkbox
+        termCheckbox = driver.findElement(terms);
+        // Waits the checkbox i s clickable
+        waitPolling = new WebDriverWait(driver, Duration.ofSeconds(30));
+        waitPolling.pollingEvery(Duration.ofSeconds(2));
+        waitPolling.until(ExpectedConditions.visibilityOfElementLocated(terms));
+        termCheckbox.click();
+        // Checks if the checkbox is selected
+        Assert.assertTrue(termCheckbox.isSelected());
     }
 }
