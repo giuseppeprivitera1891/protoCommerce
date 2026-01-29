@@ -17,8 +17,7 @@ import java.time.Duration;
 
 public class LoginSteps {
     private final WebDriver driver = DriverManager.getDriver();
-    String userTypeLabel = "User";
-    String expectedTextAlert = "You will be limited to only fewer functionalities of the app. Proceed?";
+    LoginPage loginPage = new LoginPage();
     String expectedTitlePage = "ProtoCommerce";
 
     @Given("the user is on the login page")
@@ -28,7 +27,6 @@ public class LoginSteps {
 
     @When("the user enters valid {string} and {string}")
     public void the_user_enters_valid_username_and_password (String username, String password) {
-        LoginPage loginPage = new LoginPage();
         loginPage.login(username, password);
     }
 
@@ -56,6 +54,7 @@ public class LoginSteps {
 //        // Waits the modal is invisible
 //        WebDriverWait waitCloseModal = new WebDriverWait(driver, Duration.ofSeconds(1));
 //        waitCloseModal.until(ExpectedConditions.invisibilityOfElementLocated(By.id("myModal")));
+          loginPage.selectsTypeOfUser();
         // Gets the checkbox
         WebElement termCheckbox = driver.findElement(By.id("terms"));
         // // Waits the checkbox is clickable
