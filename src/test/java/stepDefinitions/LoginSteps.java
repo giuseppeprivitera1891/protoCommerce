@@ -32,38 +32,8 @@ public class LoginSteps {
 
     @And("selects the type of user and accept the terms")
     public void selects_the_type_of_user_and_accept_the_terms() {
-//        // Gets the "User" label text
-//        String userRadioLabel = driver.findElement(By.cssSelector("label:nth-child(2) span:nth-child(1)")).getText();
-//        // Checks if the actual result is the same of expected result
-//        Assert.assertEquals(userRadioLabel, userTypeLabel);
-//        // Get the "User" radiobutton
-//        WebElement userRadioButton = driver.findElement(By.cssSelector("input[value='user']"));
-//        userRadioButton.click();
-        // Checks if the radiobutton is selected
-//        Assert.assertTrue(userRadioButton.isSelected());
-//        // Waits the modal is visible
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("myModal")));
-//        // Gets the text of the modal
-//        String actualTextModal = driver.findElement(By.cssSelector("div[class='modal-body'] p")).getText();
-//        // Prints the text of the modal
-//        System.out.println("The text of the modal is " + actualTextModal);
-//        // Checks if the actual result is the same of expected result
-//        Assert.assertEquals(actualTextModal, expectedTextAlert);
-//        driver.findElement(By.id("okayBtn")).click();
-//        // Waits the modal is invisible
-//        WebDriverWait waitCloseModal = new WebDriverWait(driver, Duration.ofSeconds(1));
-//        waitCloseModal.until(ExpectedConditions.invisibilityOfElementLocated(By.id("myModal")));
           loginPage.selectsTypeOfUser();
-        // Gets the checkbox
-        WebElement termCheckbox = driver.findElement(By.id("terms"));
-        // // Waits the checkbox is clickable
-       WebDriverWait waitCheckbox = new WebDriverWait(driver, Duration.ofSeconds(30));
-       waitCheckbox.pollingEvery(Duration.ofSeconds(2));
-       waitCheckbox.until(ExpectedConditions.visibilityOfElementLocated(By.id("terms")));
-        termCheckbox.click();
-        // Checks if the checkbox is selected
-        Assert.assertTrue(termCheckbox.isSelected());
+          loginPage.acceptTheTerms();
     }
 
     @And("clicks on submit button")
