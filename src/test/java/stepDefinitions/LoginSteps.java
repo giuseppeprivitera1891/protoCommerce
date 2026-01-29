@@ -14,7 +14,6 @@ import pageObjects.LoginPage;
 import utility.DriverManager;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 public class LoginSteps {
     private final WebDriver driver = DriverManager.getDriver();
@@ -34,7 +33,7 @@ public class LoginSteps {
     }
 
     @And("selects the type of user and accept the terms")
-    public void selects_the_type_of_user_and_accept_the_terms() throws InterruptedException {
+    public void selects_the_type_of_user_and_accept_the_terms() {
         // Gets the "User" label text
         String userRadioLabel = driver.findElement(By.cssSelector("label:nth-child(2) span:nth-child(1)")).getText();
         // Checks if the actual result is the same of expected result
