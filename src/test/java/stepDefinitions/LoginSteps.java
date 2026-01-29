@@ -32,15 +32,13 @@ public class LoginSteps {
 
     @And("selects the type of user and accept the terms")
     public void selects_the_type_of_user_and_accept_the_terms() {
-          loginPage.selectsTypeOfUser();
-          loginPage.acceptTheTerms();
+        loginPage.selectsTypeOfUser();
+        loginPage.acceptTheTerms();
     }
 
     @And("clicks on submit button")
     public void clicks_on_submit_button() {
-        WebElement signInButton = driver.findElement(By.id("signInBtn"));
-        Assert.assertTrue(signInButton.isDisplayed());
-        signInButton.click();
+        loginPage.clickSubmitButton();
     }
 
     @Then("the user should see the shop page")
