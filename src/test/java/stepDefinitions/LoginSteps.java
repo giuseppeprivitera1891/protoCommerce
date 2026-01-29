@@ -4,21 +4,10 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import pageObjects.LoginPage;
-import utility.DriverManager;
-
-import java.time.Duration;
 
 public class LoginSteps {
-    private final WebDriver driver = DriverManager.getDriver();
     LoginPage loginPage = new LoginPage();
-    String expectedTitlePage = "ProtoCommerce";
 
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page()  {
@@ -43,10 +32,6 @@ public class LoginSteps {
 
     @Then("the user should see the shop page")
     public void the_user_should_see_the_shop_page() {
-        WebDriverWait waitLoaPage = new WebDriverWait(driver, Duration.ofSeconds(5));
-        waitLoaPage.until(ExpectedConditions.titleIs(expectedTitlePage));
-        String titleShopPage = driver.getTitle();
-        System.out.println("The title of the shop page is " + titleShopPage);
-        Assert.assertEquals(titleShopPage, expectedTitlePage);
+        loginPage.shopPage();
     }
 }
