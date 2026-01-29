@@ -6,7 +6,7 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
         features = "src/test/resources/features", // Path to your feature files
         glue = "stepDefinitions", // Path to the step definitions
-        //tags = "@UI",
+        tags = "@Regression",
         // plugin = {"pretty", "html:target/cucumber-reports.html"} // Reporting option
         plugin = {
                 "pretty",

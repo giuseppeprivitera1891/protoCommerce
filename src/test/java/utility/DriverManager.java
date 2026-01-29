@@ -11,7 +11,6 @@ public class DriverManager {
         if (driver == null) {
             // Initialize the driver
             driver = new FirefoxDriver();
-
             // Basic configuration
             driver.manage().window().maximize();
         }
