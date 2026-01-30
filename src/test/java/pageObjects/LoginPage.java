@@ -87,8 +87,7 @@ public class LoginPage {
     }
 
     public void shopPage() {
-        waitLogin = new WebDriverWait(driver, Duration.ofSeconds(fiveSeconds));
-        waitLogin.until(ExpectedConditions.titleIs(expectedTitlePage));
+        utils.callWaitTitle(fiveSeconds, expectedTitlePage);
         String titleShopPage = driver.getTitle();
         System.out.println("The title of the shop page is " + titleShopPage);
         Assert.assertEquals(titleShopPage, expectedTitlePage);
