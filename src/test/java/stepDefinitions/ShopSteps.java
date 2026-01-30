@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utility.DriverManager;
+import utility.GenericUtils;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -18,24 +19,28 @@ import java.util.List;
 
 public class ShopSteps {
     private final WebDriver driver = DriverManager.getDriver();
+    public GenericUtils utils = new GenericUtils();
     // List of our products
     List<String> myProduct = Arrays.asList("iphone X", "Nokia Edge");
     String expectedCheckoutTextButton = "Checkout ( 2 )\n(current)";
     String expectedProductTableHead = "Product";
+    int twoSeconds = 2;
+
+    By cardProducts = By.xpath("//div[@class='card h-100']");
 
     @Given("the user is on the {string}")
     public void the_user_is_on_the_shopPage(String shopPage) {
         String urlShopPage = driver.getCurrentUrl();
         System.out.println("The URL of shop page is " + urlShopPage);
         Assert.assertTrue(urlShopPage.contains(shopPage));
-        WebDriverWait waitProduct = new WebDriverWait(driver, Duration.ofSeconds(2));
-        waitProduct.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='card h-100']")));
+        utils.callWaitVisibility(twoSeconds, cardProducts);
+
     }
 
     @When("the user adds the products")
     public void the_user_adds_the_products() {
         // Gets the list of products
-        List<WebElement> products = driver.findElements(By.xpath("//div[@class='card h-100']"));
+        List<WebElement> products = driver.findElements(cardProducts);
 
         for (String addProduct : myProduct) {
             for (WebElement product : products) {

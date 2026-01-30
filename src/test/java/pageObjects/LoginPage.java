@@ -27,6 +27,7 @@ public class LoginPage {
     By getUserRadioLabel = By.cssSelector("label:nth-child(2) span:nth-child(1)");
     By userRadioButton = By.cssSelector("input[value='user']");
     By modal = By.id("myModal");
+    By modalBody = By.cssSelector("div[class='modal-body'] p");
     By okayModalButton = By.id("okayBtn");
     By terms = By.id("terms");
     By submitButton = By.id("signInBtn");
@@ -54,14 +55,14 @@ public class LoginPage {
         // Waits the modal is visible
         utils.callWaitVisibility(oneSecond, modal);
         // Gets the text of the modal
-        actualTextModal = driver.findElement(By.cssSelector("div[class='modal-body'] p")).getText();
+        actualTextModal = driver.findElement(modalBody).getText();
         // Prints the text of the modal
         System.out.println("The text of the modal is " + actualTextModal);
         // Checks if the actual result is the same of expected result
         Assert.assertEquals(actualTextModal, expectedTextAlert);
         driver.findElement(okayModalButton).click();
         // Waits the modal is invisible
-        utils.callWaitInvisibility(oneSecond, modal);
+        utils.callWaitInvisibility(fiveSeconds, modal);
     }
 
     public void acceptTheTerms() {

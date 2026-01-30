@@ -1,4 +1,5 @@
 Feature: Shop functionality
+  @Regression
   Scenario Outline: The user add products to the cart
     Given the user is on the "<shopPage>"
     When the user adds the products
