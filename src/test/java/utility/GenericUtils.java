@@ -2,7 +2,6 @@ package utility;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -26,6 +25,11 @@ public class GenericUtils {
         wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
         wait.pollingEvery(Duration.ofSeconds(pollingEvery));
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public void callWaitTitle(int seconds, String title) {
+        wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
+        wait.until(ExpectedConditions.titleIs(title));
     }
 
 }
