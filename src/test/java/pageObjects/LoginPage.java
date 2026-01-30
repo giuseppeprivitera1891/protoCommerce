@@ -7,12 +7,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utility.DriverManager;
+import utility.GenericUtils;
+
 import java.time.Duration;
 
 public class LoginPage {
     public WebDriver driver = DriverManager.getDriver();
-    WebDriverWait waitModal;
-    WebDriverWait waitModalClose;
+    public GenericUtils utils = new GenericUtils();
     WebDriverWait waitPolling;
     WebDriverWait waitLogin;
     WebElement userRadioButtonClick;
@@ -57,8 +58,7 @@ public class LoginPage {
         // Checks if the radiobutton is selected
         Assert.assertTrue(userRadioButtonClick.isSelected());
         // Waits the modal is visible
-        waitModal = new WebDriverWait(driver, Duration.ofSeconds(oneSecond));
-        waitModal.until(ExpectedConditions.visibilityOfElementLocated(modal));
+        utils.callWaitVisibility(oneSecond, modal);
         // Gets the text of the modal
         actualTextModal = driver.findElement(By.cssSelector("div[class='modal-body'] p")).getText();
         // Prints the text of the modal
@@ -67,17 +67,14 @@ public class LoginPage {
         Assert.assertEquals(actualTextModal, expectedTextAlert);
         driver.findElement(okayModalButton).click();
         // Waits the modal is invisible
-        waitModalClose = new WebDriverWait(driver, Duration.ofSeconds(fiveSeconds));
-        waitModalClose.until(ExpectedConditions.invisibilityOfElementLocated(modal));
+        utils.callWaitInvisibility(oneSecond, modal);
     }
 
     public void acceptTheTerms() {
         // Gets the checkbox
         termCheckbox = driver.findElement(terms);
         // Waits the checkbox i s clickable
-        waitPolling = new WebDriverWait(driver, Duration.ofSeconds(thirtySeconds));
-        waitPolling.pollingEvery(Duration.ofSeconds(fiveSeconds));
-        waitPolling.until(ExpectedConditions.visibilityOfElementLocated(terms));
+        utils.callWaitPollingVisibility(thirtySeconds, fiveSeconds, terms);
         termCheckbox.click();
         // Checks if the checkbox is selected
         Assert.assertTrue(termCheckbox.isSelected());
@@ -90,8 +87,7 @@ public class LoginPage {
     }
 
     public void shopPage() {
-        waitLogin = new WebDriverWait(driver, Duration.ofSeconds(fiveSeconds));
-        waitLogin.until(ExpectedConditions.titleIs(expectedTitlePage));
+        utils.callWaitTitle(fiveSeconds, expectedTitlePage);
         String titleShopPage = driver.getTitle();
         System.out.println("The title of the shop page is " + titleShopPage);
         Assert.assertEquals(titleShopPage, expectedTitlePage);
