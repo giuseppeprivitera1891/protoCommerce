@@ -60,8 +60,6 @@ public class LoginPage {
         // Checks if the radiobutton is selected
         Assert.assertTrue(userRadioButtonClick.isSelected());
         // Waits the modal is visible
-       // waitModal = new WebDriverWait(driver, Duration.ofSeconds(oneSecond));
-       // waitModal.until(ExpectedConditions.visibilityOfElementLocated(modal));
         utils.callWaitVisibilityElement(oneSecond, modal);
         // Gets the text of the modal
         actualTextModal = driver.findElement(By.cssSelector("div[class='modal-body'] p")).getText();
@@ -71,8 +69,7 @@ public class LoginPage {
         Assert.assertEquals(actualTextModal, expectedTextAlert);
         driver.findElement(okayModalButton).click();
         // Waits the modal is invisible
-        waitModalClose = new WebDriverWait(driver, Duration.ofSeconds(fiveSeconds));
-        waitModalClose.until(ExpectedConditions.invisibilityOfElementLocated(modal));
+        utils.callWaitInvisibilityElement(oneSecond, modal);
     }
 
     public void acceptTheTerms() {
