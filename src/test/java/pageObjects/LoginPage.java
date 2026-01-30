@@ -14,8 +14,6 @@ import java.time.Duration;
 public class LoginPage {
     public WebDriver driver = DriverManager.getDriver();
     public GenericUtils utils = new GenericUtils();
-    WebDriverWait waitModal;
-    WebDriverWait waitModalClose;
     WebDriverWait waitPolling;
     WebDriverWait waitLogin;
     WebElement userRadioButtonClick;
