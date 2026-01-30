@@ -7,10 +7,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utility.DriverManager;
+import utility.GenericUtils;
+
 import java.time.Duration;
 
 public class LoginPage {
     public WebDriver driver = DriverManager.getDriver();
+    public GenericUtils utils = new GenericUtils();
     WebDriverWait waitModal;
     WebDriverWait waitModalClose;
     WebDriverWait waitPolling;
@@ -57,8 +60,9 @@ public class LoginPage {
         // Checks if the radiobutton is selected
         Assert.assertTrue(userRadioButtonClick.isSelected());
         // Waits the modal is visible
-        waitModal = new WebDriverWait(driver, Duration.ofSeconds(oneSecond));
-        waitModal.until(ExpectedConditions.visibilityOfElementLocated(modal));
+       // waitModal = new WebDriverWait(driver, Duration.ofSeconds(oneSecond));
+       // waitModal.until(ExpectedConditions.visibilityOfElementLocated(modal));
+        utils.callWaitVisibilityElement(oneSecond, modal);
         // Gets the text of the modal
         actualTextModal = driver.findElement(By.cssSelector("div[class='modal-body'] p")).getText();
         // Prints the text of the modal
