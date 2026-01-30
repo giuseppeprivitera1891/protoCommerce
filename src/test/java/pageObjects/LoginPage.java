@@ -58,7 +58,7 @@ public class LoginPage {
         // Checks if the radiobutton is selected
         Assert.assertTrue(userRadioButtonClick.isSelected());
         // Waits the modal is visible
-        utils.callWaitVisibilityElement(oneSecond, modal);
+        utils.callWaitVisibility(oneSecond, modal);
         // Gets the text of the modal
         actualTextModal = driver.findElement(By.cssSelector("div[class='modal-body'] p")).getText();
         // Prints the text of the modal
@@ -67,16 +67,14 @@ public class LoginPage {
         Assert.assertEquals(actualTextModal, expectedTextAlert);
         driver.findElement(okayModalButton).click();
         // Waits the modal is invisible
-        utils.callWaitInvisibilityElement(oneSecond, modal);
+        utils.callWaitInvisibility(oneSecond, modal);
     }
 
     public void acceptTheTerms() {
         // Gets the checkbox
         termCheckbox = driver.findElement(terms);
         // Waits the checkbox i s clickable
-        waitPolling = new WebDriverWait(driver, Duration.ofSeconds(thirtySeconds));
-        waitPolling.pollingEvery(Duration.ofSeconds(fiveSeconds));
-        waitPolling.until(ExpectedConditions.visibilityOfElementLocated(terms));
+        utils.callWaitPollingVisibility(thirtySeconds, fiveSeconds, terms);
         termCheckbox.click();
         // Checks if the checkbox is selected
         Assert.assertTrue(termCheckbox.isSelected());
