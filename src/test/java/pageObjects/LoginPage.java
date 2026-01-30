@@ -3,19 +3,13 @@ package pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utility.DriverManager;
 import utility.GenericUtils;
 
-import java.time.Duration;
-
 public class LoginPage {
     public WebDriver driver = DriverManager.getDriver();
     public GenericUtils utils = new GenericUtils();
-    WebDriverWait waitPolling;
-    WebDriverWait waitLogin;
     WebElement userRadioButtonClick;
     WebElement termCheckbox;
     WebElement signInButton;
