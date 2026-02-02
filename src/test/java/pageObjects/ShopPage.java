@@ -22,6 +22,8 @@ public class ShopPage {
     String actualProductTableHead;
     String expectedProductTableHead = "Product";
     int  twoSeconds = 2;
+    int fiveSeconds = 5;
+    int thirtySeconds = 30;
 
     List<WebElement> products;
     WebElement checkoutButton;
@@ -64,7 +66,7 @@ public class ShopPage {
 
     public void theUserShouldSeeTheCartPage() {
         actualProductTableHead = driver.findElement(actualTextProductTableHead).getText();
-        utils.callWaitVisibility(twoSeconds, actualTextCheckoutButton);
+        utils.callWaitPollingVisibility(thirtySeconds, fiveSeconds, actualTextProductTableHead);
         Assert.assertEquals(actualProductTableHead, expectedProductTableHead);
     }
 }
