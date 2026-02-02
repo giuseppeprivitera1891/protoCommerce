@@ -10,9 +10,6 @@ import utility.GenericUtils;
 public class LoginPage {
     public WebDriver driver = DriverManager.getDriver();
     public GenericUtils utils = new GenericUtils();
-    WebElement userRadioButtonClick;
-    WebElement termCheckbox;
-    WebElement signInButton;
     String userTypeLabel = "User";
     String userRadioLabel;
     String actualTextModal;
@@ -21,6 +18,10 @@ public class LoginPage {
     int oneSecond = 1;
     int fiveSeconds = 5;
     int thirtySeconds = 30;
+
+    WebElement userRadioButtonClick;
+    WebElement termCheckbox;
+    WebElement signInButton;
 
     By username = By.id("username");
     By password = By.id("password");
