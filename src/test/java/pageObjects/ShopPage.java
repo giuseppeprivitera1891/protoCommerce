@@ -17,16 +17,20 @@ public class ShopPage {
     // List of our products
     List<String> myProduct = Arrays.asList("iphone X", "Nokia Edge");
     String urlShopPage;
+    String actualCheckoutButton;
+    String expectedCheckoutTextButton = "Checkout ( 2 )\n(current)";
     int oneSecond = 1;
     int  twoSeconds = 2;
     int fiveSeconds = 5;
     int thirtySeconds = 30;
 
     List<WebElement> products;
+    WebElement checkoutButton;
 
     By cardProducts = By.xpath("//div[@class='card h-100']");
     By cardTitle = By.cssSelector("h4[class='card-title']");
     By cardFooterButton = By.cssSelector(".card-footer button");
+    By actualTextCheckoutButton = By.xpath("(//a[@class='nav-link btn btn-primary'])[1]");
 
     public void theUserIsOnTheShopPage(String url) {
         urlShopPage = driver.getCurrentUrl();
@@ -50,4 +54,11 @@ public class ShopPage {
         }
     }
 
+    public void clickOnTheCartButton() {
+        actualCheckoutButton = driver.findElement(actualTextCheckoutButton).getText();
+        System.out.println("The text of checkout button is " + actualCheckoutButton);
+        Assert.assertEquals(actualCheckoutButton, expectedCheckoutTextButton);
+        checkoutButton = driver.findElement(actualTextCheckoutButton);
+        checkoutButton.click();
+    }
 }
