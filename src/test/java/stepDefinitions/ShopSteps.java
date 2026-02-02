@@ -18,8 +18,6 @@ import java.util.List;
 public class ShopSteps {
     ShopPage shopPage = new ShopPage();
 
-    // List of our products
-    List<String> myProduct = Arrays.asList("iphone X", "Nokia Edge");
     String expectedCheckoutTextButton = "Checkout ( 2 )\n(current)";
     String expectedProductTableHead = "Product";
     int twoSeconds = 2;
@@ -35,18 +33,7 @@ public class ShopSteps {
 
     @When("the user adds the products")
     public void the_user_adds_the_products() {
-        // Gets the list of products
-        List<WebElement> products = driver.findElements(cardProducts);
-
-        for (String addProduct : myProduct) {
-            for (WebElement product : products) {
-                String productName = product.findElement(cardTitle).getText();
-                if (productName.equalsIgnoreCase(addProduct)) {
-                    product.findElement(cardFooterButton).click();
-                    break;
-                }
-            }
-        }
+        shopPage.theUserAddsTheProducts();
     }
 
     @And("clicks on the cart button")
