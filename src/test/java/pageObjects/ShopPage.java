@@ -19,10 +19,9 @@ public class ShopPage {
     String urlShopPage;
     String actualCheckoutButton;
     String expectedCheckoutTextButton = "Checkout ( 2 )\n(current)";
-    int oneSecond = 1;
+    String actualProductTableHead;
+    String expectedProductTableHead = "Product";
     int  twoSeconds = 2;
-    int fiveSeconds = 5;
-    int thirtySeconds = 30;
 
     List<WebElement> products;
     WebElement checkoutButton;
@@ -31,6 +30,7 @@ public class ShopPage {
     By cardTitle = By.cssSelector("h4[class='card-title']");
     By cardFooterButton = By.cssSelector(".card-footer button");
     By actualTextCheckoutButton = By.xpath("(//a[@class='nav-link btn btn-primary'])[1]");
+    By actualTextProductTableHead = By.xpath("//th[normalize-space()='Product']");
 
     public void theUserIsOnTheShopPage(String url) {
         urlShopPage = driver.getCurrentUrl();
@@ -60,5 +60,11 @@ public class ShopPage {
         Assert.assertEquals(actualCheckoutButton, expectedCheckoutTextButton);
         checkoutButton = driver.findElement(actualTextCheckoutButton);
         checkoutButton.click();
+    }
+
+    public void theUserShouldSeeTheCartPage() {
+        actualProductTableHead = driver.findElement(actualTextProductTableHead).getText();
+        utils.callWaitVisibility(twoSeconds, actualTextCheckoutButton);
+        Assert.assertEquals(actualProductTableHead, expectedProductTableHead);
     }
 }
