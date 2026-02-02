@@ -12,8 +12,6 @@ import org.testng.Assert;
 import pageObjects.ShopPage;
 
 import java.time.Duration;
-import java.util.Arrays;
-import java.util.List;
 
 public class ShopSteps {
     ShopPage shopPage = new ShopPage();
