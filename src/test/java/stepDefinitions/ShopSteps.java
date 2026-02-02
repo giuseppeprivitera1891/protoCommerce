@@ -27,6 +27,8 @@ public class ShopSteps {
     int twoSeconds = 2;
 
     By cardProducts = By.xpath("//div[@class='card h-100']");
+    By cardTitle = By.cssSelector("h4[class='card-title']");
+    By cardFooterButton = By.cssSelector(".card-footer button");
 
     @Given("the user is on the {string}")
     public void the_user_is_on_the_shopPage(String shopPage) {
@@ -34,7 +36,6 @@ public class ShopSteps {
         System.out.println("The URL of shop page is " + urlShopPage);
         Assert.assertTrue(urlShopPage.contains(shopPage));
         utils.callWaitVisibility(twoSeconds, cardProducts);
-
     }
 
     @When("the user adds the products")
@@ -44,9 +45,9 @@ public class ShopSteps {
 
         for (String addProduct : myProduct) {
             for (WebElement product : products) {
-                String productName = product.findElement(By.cssSelector("h4[class='card-title']")).getText();
+                String productName = product.findElement(cardTitle).getText();
                 if (productName.equalsIgnoreCase(addProduct)) {
-                    product.findElement(By.cssSelector(".card-footer button")).click();
+                    product.findElement(cardFooterButton).click();
                     break;
                 }
             }
