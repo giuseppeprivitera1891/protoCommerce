@@ -16,7 +16,6 @@ import java.time.Duration;
 public class ShopSteps {
     ShopPage shopPage = new ShopPage();
 
-    String expectedCheckoutTextButton = "Checkout ( 2 )\n(current)";
     String expectedProductTableHead = "Product";
     int twoSeconds = 2;
 
@@ -32,11 +31,7 @@ public class ShopSteps {
 
     @And("clicks on the cart button")
     public void clicks_on_the_cart_button() {
-        String actualCheckoutButton = driver.findElement(By.xpath("(//a[@class='nav-link btn btn-primary'])[1]")).getText();
-        System.out.println("The text of checkout button is " + actualCheckoutButton);
-        Assert.assertEquals(actualCheckoutButton, expectedCheckoutTextButton);
-        WebElement checkoutButton = driver.findElement(By.xpath("(//a[@class='nav-link btn btn-primary'])[1]"));
-        checkoutButton.click();
+        shopPage.clickOnTheCartButton();
     }
 
     @Then("the user should see the cart page")
