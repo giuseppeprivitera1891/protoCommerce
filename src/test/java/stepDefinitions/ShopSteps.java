@@ -5,21 +5,19 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import utility.DriverManager;
-import utility.GenericUtils;
+import pageObjects.ShopPage;
 
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
 public class ShopSteps {
-    private final WebDriver driver = DriverManager.getDriver();
-    public GenericUtils utils = new GenericUtils();
+    ShopPage shopPage = new ShopPage();
+
     // List of our products
     List<String> myProduct = Arrays.asList("iphone X", "Nokia Edge");
     String expectedCheckoutTextButton = "Checkout ( 2 )\n(current)";
@@ -31,11 +29,8 @@ public class ShopSteps {
     By cardFooterButton = By.cssSelector(".card-footer button");
 
     @Given("the user is on the {string}")
-    public void the_user_is_on_the_shopPage(String shopPage) {
-        String urlShopPage = driver.getCurrentUrl();
-        System.out.println("The URL of shop page is " + urlShopPage);
-        Assert.assertTrue(urlShopPage.contains(shopPage));
-        utils.callWaitVisibility(twoSeconds, cardProducts);
+    public void the_user_is_on_the_shopPage(String urlShopPage) {
+        shopPage.userIsOnTheShopPage(urlShopPage);
     }
 
     @When("the user adds the products")
