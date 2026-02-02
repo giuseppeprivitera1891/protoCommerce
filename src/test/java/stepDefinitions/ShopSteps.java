@@ -22,10 +22,6 @@ public class ShopSteps {
     String expectedProductTableHead = "Product";
     int twoSeconds = 2;
 
-    By cardProducts = By.xpath("//div[@class='card h-100']");
-    By cardTitle = By.cssSelector("h4[class='card-title']");
-    By cardFooterButton = By.cssSelector(".card-footer button");
-
     @Given("the user is on the {string}")
     public void the_user_is_on_the_shopPage(String urlShopPage) {
         shopPage.theUserIsOnTheShopPage(urlShopPage);
