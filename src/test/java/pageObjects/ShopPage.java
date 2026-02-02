@@ -17,7 +17,7 @@ public class ShopPage {
 
     By cardProducts = By.xpath("//div[@class='card h-100']");
 
-    public void userIsOnTheShopPage(String url) {
+    public void theUserIsOnTheShopPage(String url) {
         urlShopPage = driver.getCurrentUrl();
         System.out.println("The URL of shop page is " + urlShopPage);
         Assert.assertTrue(urlShopPage.contains(url));

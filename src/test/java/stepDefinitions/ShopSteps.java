@@ -30,7 +30,7 @@ public class ShopSteps {
 
     @Given("the user is on the {string}")
     public void the_user_is_on_the_shopPage(String urlShopPage) {
-        shopPage.userIsOnTheShopPage(urlShopPage);
+        shopPage.theUserIsOnTheShopPage(urlShopPage);
     }
 
     @When("the user adds the products")
