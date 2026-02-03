@@ -35,6 +35,7 @@ public class ShopPage {
     String expectedTotalPrice = "₹. 365000";
     String actualCheckoutTextButton;
     String expectedCheckoutFinalTextButton = "Checkout";
+    String actualDeliveryText;
     String expectedDeliveryText = "Please choose your delivery location.\n" +
             "Then click on purchase button ";
     String sendFirstFirstQuantity = "3";
@@ -60,6 +61,7 @@ public class ShopPage {
     By getTotalPrice = By.xpath("//strong[text() ='₹. 365000']");
     By getCheckoutFinaTextButton = By.cssSelector("button[class='btn btn-success']");
     By getCheckoutFinalButton = By.cssSelector("button[class='btn btn-success']");
+    By getDeliveryText = By.cssSelector("label[for='country']");
 
     public void theUserIsOnTheShopPage(String url) {
         urlShopPage = driver.getCurrentUrl();
@@ -142,8 +144,8 @@ public class ShopPage {
 
     public void checkoutPage() {
         // Gets the text delivery and checks it with expected text
-        String actualDeliveryText = driver.findElement(By.cssSelector("label[for='country']")).getText();
+        actualDeliveryText = driver.findElement(getDeliveryText).getText();
         System.out.println("The delivery text: " + actualDeliveryText);
         Assert.assertEquals(actualDeliveryText, expectedDeliveryText);
-    }*/
+    }
 }
