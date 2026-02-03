@@ -37,7 +37,7 @@ public class ShopPage {
     String expectedCheckoutFinalTextButton = "Checkout";
     String actualDeliveryText;
     String expectedDeliveryText = "Please choose your delivery location.\n" +
-            "Then click on purchase button ";
+            "Then click on purchase button";
     String sendFirstFirstQuantity = "3";
     int  twoSeconds = 2;
     int fiveSeconds = 5;
