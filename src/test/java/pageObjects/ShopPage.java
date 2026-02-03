@@ -100,12 +100,9 @@ public class ShopPage {
         getFirstProductText = driver.findElement(firstProductText).getText();
         System.out.println("The text of the first product: " + getFirstProductText);
         Assert.assertEquals(getFirstProductText, expectedFirstProductText);
-        utils.callWaitVisibility(tenSeconds, getFirstProductQuantity);
         firstProductQuantity = driver.findElement(getFirstProductQuantity);
         firstProductQuantity.clear();
         firstProductQuantity.sendKeys(sendFirstFirstQuantity);
-        firstProductQuantity.getText();
-        System.out.println("First product quantity is: " + firstProductQuantity);
     }
 
     public void correctnessOfThePrices() {
