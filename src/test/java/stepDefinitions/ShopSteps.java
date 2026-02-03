@@ -45,11 +45,8 @@ public class ShopSteps {
         shopPage.clickOnTheCheckoutButton();
     }
 
-    /*@Then("the user should see the checkout page")
+    @Then("the user should see the checkout page")
     public void the_user_should_see_the_checkout_page() {
-        // Gets the text delivery and checks it with expected text
-        String actualDeliveryText = driver.findElement(By.cssSelector("label[for='country']")).getText();
-        System.out.println("The delivery text: " + actualDeliveryText);
-        Assert.assertEquals(actualDeliveryText, expectedDeliveryText);
-    }*/
+        shopPage.checkoutPage();
+    }
 }
