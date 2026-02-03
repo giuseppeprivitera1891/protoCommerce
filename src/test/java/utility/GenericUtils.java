@@ -33,8 +33,4 @@ public class GenericUtils {
         wait.until(ExpectedConditions.titleIs(title));
     }
 
-    public void callWaitPresenceElement(int seconds, By locator) {
-        wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
-        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-    }
 }

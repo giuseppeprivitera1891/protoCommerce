@@ -87,7 +87,7 @@ public class ShopPage {
     }
 
     public void theUserAddsTheQuantityForAProduct() {
-        utils.callWaitPresenceElement(tenSeconds, firstProductText);
+        utils.callWaitVisibility(tenSeconds, firstProductText);
         getFirstProductText = driver.findElement(firstProductText).getText();
         System.out.println("The text of the first product: " + getFirstProductText);
         Assert.assertEquals(getFirstProductText, expectedFirstProductText);
