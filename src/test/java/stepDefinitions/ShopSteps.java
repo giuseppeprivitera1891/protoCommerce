@@ -40,18 +40,12 @@ public class ShopSteps {
         shopPage.correctnessOfThePrices();
     }
 
-    /* @And("clicks on the checkout button")
+    @And("clicks on the checkout button")
     public void clicks_on_the_checkout_button() {
-        // Gets the text checkout button and checks it with expected text
-        String actualCheckoutTextButton =  driver.findElement(By.cssSelector("button[class='btn btn-success']")).getText();
-        System.out.println("The text of the Checkout button: " + actualCheckoutTextButton);
-        Assert.assertEquals(actualCheckoutTextButton, expectedCheckoutTextButton);
-        // Clicks on the Checkout button
-        WebElement checkoutButon = driver.findElement(By.cssSelector("button[class='btn btn-success']"));
-        checkoutButon.click();
+        shopPage.clickOnTheCheckoutButton();
     }
 
-    @Then("the user should see the checkout page")
+    /*@Then("the user should see the checkout page")
     public void the_user_should_see_the_checkout_page() {
         // Gets the text delivery and checks it with expected text
         String actualDeliveryText = driver.findElement(By.cssSelector("label[for='country']")).getText();
