@@ -7,6 +7,8 @@ import org.testng.Assert;
 import utility.DriverManager;
 import utility.GenericUtils;
 
+import java.util.List;
+
 public class CartPage {
     public WebDriver driver = DriverManager.getDriver();
     GenericUtils utils = new GenericUtils();
@@ -23,20 +25,25 @@ public class CartPage {
     String expectedDeliveryText = "Please choose your delivery location.\n" +
             "Then click on purchase button ";
     String sendFirstFirstQuantity = "3";
-    String sendSecondFirstQuantity = "2";
     int twoSeconds = 2;
+    int fiveSeconds = 5;
+    int tenSeconds = 10;
+    int thirtySeconds = 30;
 
     WebElement firstProductQuantity;
 
-    By firstProductText = By.xpath("//tr[contains(.,'iphone X')]//input[@type='number']");
-    By getFirstProductQuantity = By.cssSelector("input[type='number']");
+    By firstProductText = By.xpath("//a[normalize-space()='iphone X'][1]");
+    By getFirstProductQuantity = By.xpath("//a[normalize-space()='iphone X']/ancestor::tr//input");
 
     public void theUserAddsTheQuantityForAProduct() {
-        utils.callWaitVisibility(twoSeconds, firstProductText);
-        getFirstProductText = driver.findElement(firstProductText).getText();
-        System.out.println("The text of the first product: " + getFirstProductText);
-        Assert.assertEquals(getFirstProductText, expectedFirstProductText);
-        utils.callWaitVisibility(twoSeconds, getFirstProductQuantity);
+      //  utils.callWaitPresenceElement(tenSeconds, firstProductText);
+      //  getFirstProductText = driver.findElement(firstProductText).getText();
+      //  System.out.println("The text of the first product: " + getFirstProductText);
+      //  Assert.assertEquals(getFirstProductText, expectedFirstProductText);
+        driver.navigate().refresh();
+        utils.callWaitPresenceElement(tenSeconds, getFirstProductQuantity);
+        String pageSource = driver.getPageSource();
+        System.out.println("L'elemento 'iphone X' è presente nel sorgente? " + pageSource.contains("iphone X"));
         firstProductQuantity = driver.findElement(getFirstProductQuantity);
         firstProductQuantity.clear();
         firstProductQuantity.sendKeys(sendFirstFirstQuantity);

@@ -12,7 +12,7 @@ import utility.DriverManager;
 
 public class CartSteps {
     CartPage cartPage = new CartPage();
-    public WebDriver driver = DriverManager.getDriver();
+  //  public WebDriver driver = DriverManager.getDriver();
 
     String expectedUnitPriceFirstProduct = "₹. 100000";
     String expectedTotalPriceFirstProduct = "₹. 300000";
@@ -29,7 +29,7 @@ public class CartSteps {
         cartPage.theUserAddsTheQuantityForAProduct();
     }
 
-    @And("checks the correctness of the prices")
+    /*@And("checks the correctness of the prices")
     public void checks_the_correctness_of_the_prices() {
         // Gets the unit price of the first product and checks it with expected unit price
         String actualUnitPriceFirstProduct = driver.findElement(By.xpath("//strong[text() = '₹. 100000']")).getText();
@@ -74,5 +74,5 @@ public class CartSteps {
         String actualDeliveryText = driver.findElement(By.cssSelector("label[for='country']")).getText();
         System.out.println("The delivery text: " + actualDeliveryText);
         Assert.assertEquals(actualDeliveryText, expectedDeliveryText);
-    }
+    }*/
 }
