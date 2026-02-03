@@ -91,13 +91,13 @@ public class ShopPage {
         checkoutButton.click();
     }
 
-    public void theUserShouldSeeTheCartPage() {
+    public void cartPage() {
         actualProductTableHead = driver.findElement(actualTextProductTableHead).getText();
         utils.callWaitPollingVisibility(thirtySeconds, fiveSeconds, actualTextProductTableHead);
         Assert.assertEquals(actualProductTableHead, expectedProductTableHead);
     }
 
-    public void theUserAddsTheQuantityForAProduct() {
+    public void addQuantityForAProduct() {
         utils.callWaitVisibility(tenSeconds, firstProductText);
         getFirstProductText = driver.findElement(firstProductText).getText();
         System.out.println("The text of the first product: " + getFirstProductText);
@@ -139,4 +139,11 @@ public class ShopPage {
         checkoutFinalButton = driver.findElement(getCheckoutFinalButton);
         checkoutFinalButton.click();
     }
+
+    public void checkoutPage() {
+        // Gets the text delivery and checks it with expected text
+        String actualDeliveryText = driver.findElement(By.cssSelector("label[for='country']")).getText();
+        System.out.println("The delivery text: " + actualDeliveryText);
+        Assert.assertEquals(actualDeliveryText, expectedDeliveryText);
+    }*/
 }

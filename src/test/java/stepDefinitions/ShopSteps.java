@@ -26,12 +26,12 @@ public class ShopSteps {
 
     @Then("the user should see the cart page")
     public void the_user_should_see_the_cart_page() {
-        shopPage.theUserShouldSeeTheCartPage();
+        shopPage.cartPage();
     }
 
     @When("the user adds the quantity for a product")
     public void the_user_adds_the_quantity_for_a_product() {
-        shopPage.theUserAddsTheQuantityForAProduct();
+        shopPage.addQuantityForAProduct();
     }
 
 
