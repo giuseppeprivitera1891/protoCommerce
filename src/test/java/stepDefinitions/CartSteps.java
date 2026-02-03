@@ -6,16 +6,14 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import pageObjects.CartPage;
 import utility.DriverManager;
 
-import java.time.Duration;
-
 public class CartSteps {
-    private final WebDriver driver = DriverManager.getDriver();
-    String expectedFirstProductText = "iphone X";
+    CartPage cartPage = new CartPage();
+    public WebDriver driver = DriverManager.getDriver();
+
     String expectedUnitPriceFirstProduct = "₹. 100000";
     String expectedTotalPriceFirstProduct = "₹. 300000";
     String expectedSecondProductQuantity = "1";
@@ -28,17 +26,7 @@ public class CartSteps {
 
     @When("the user adds the quantity for a product")
     public void the_user_adds_the_quantity_for_a_product() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tr[contains(.,'iphone X')]//input[@type='number']")));
-        String firstProductText = driver.findElement(By.xpath("//tr[contains(.,'iphone X')]//input[@type='number']")).getText();
-        System.out.println("The text of the first product: " + firstProductText);
-        Assert.assertEquals(firstProductText, expectedFirstProductText);
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[type='number']")));
-        WebElement firstProductQuantity = driver.findElement(By.cssSelector("input[type='number']"));
-        firstProductQuantity.clear();
-        firstProductQuantity.sendKeys("3");
-        firstProductQuantity.getText();
-        System.out.println("First product quantity is: " + firstProductQuantity);
+        cartPage.theUserAddsTheQuantityForAProduct();
     }
 
     @And("checks the correctness of the prices")
