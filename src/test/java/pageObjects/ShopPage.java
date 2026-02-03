@@ -33,6 +33,7 @@ public class ShopPage {
     String expectedUnitPriceSecondProduct = "₹. 65000";
     String expectedTotalPriceSecondProduct = "₹. 65000";
     String expectedTotalPrice = "₹. 365000";
+    String actualCheckoutTextButton;
     String expectedCheckoutFinalTextButton = "Checkout";
     String expectedDeliveryText = "Please choose your delivery location.\n" +
             "Then click on purchase button ";
@@ -43,8 +44,7 @@ public class ShopPage {
     int thirtySeconds = 30;
 
     List<WebElement> products;
-    WebElement checkoutButton;
-    WebElement firstProductQuantity;
+    WebElement checkoutButton, firstProductQuantity, checkoutFinalButton;
 
     By cardProducts = By.xpath("//div[@class='card h-100']");
     By cardTitle = By.cssSelector("h4[class='card-title']");
@@ -58,6 +58,8 @@ public class ShopPage {
     By totalPriceFirstProduct = By.xpath(("//strong[text() = '₹. 300000']"));
     By totalPriceSecondProduct = By.xpath("(//strong[text() = '₹. 65000'])[2]");
     By getTotalPrice = By.xpath("//strong[text() ='₹. 365000']");
+    By getCheckoutFinaTextButton = By.cssSelector("button[class='btn btn-success']");
+    By getCheckoutFinalButton = By.cssSelector("button[class='btn btn-success']");
 
     public void theUserIsOnTheShopPage(String url) {
         urlShopPage = driver.getCurrentUrl();
@@ -126,5 +128,15 @@ public class ShopPage {
         actualTotalPrice = driver.findElement(getTotalPrice).getText();
         System.out.println("The actual total price: " + actualTotalPrice);
         Assert.assertEquals(actualTotalPrice, expectedTotalPrice);
+    }
+
+    public void clickOnTheCheckoutButton() {
+        // Gets the text checkout button and checks it with expected text
+        actualCheckoutTextButton =  driver.findElement(getCheckoutFinaTextButton).getText();
+        System.out.println("The text of the Checkout button: " + actualCheckoutTextButton);
+        Assert.assertEquals(actualCheckoutTextButton, expectedCheckoutFinalTextButton);
+        // Clicks on the Checkout button
+        checkoutFinalButton = driver.findElement(getCheckoutFinalButton);
+        checkoutFinalButton.click();
     }
 }
