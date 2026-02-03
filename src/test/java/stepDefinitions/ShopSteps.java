@@ -26,6 +26,27 @@ public class ShopSteps {
 
     @Then("the user should see the cart page")
     public void the_user_should_see_the_cart_page() {
-        shopPage.theUserShouldSeeTheCartPage();
+        shopPage.cartPage();
+    }
+
+    @When("the user adds the quantity for a product")
+    public void the_user_adds_the_quantity_for_a_product() {
+        shopPage.addQuantityForAProduct();
+    }
+
+
+    @And("checks the correctness of the prices")
+    public void checks_the_correctness_of_the_prices() {
+        shopPage.correctnessOfThePrices();
+    }
+
+    @And("clicks on the checkout button")
+    public void clicks_on_the_checkout_button() {
+        shopPage.clickOnTheCheckoutButton();
+    }
+
+    @Then("the user should see the checkout page")
+    public void the_user_should_see_the_checkout_page() {
+        shopPage.checkoutPage();
     }
 }

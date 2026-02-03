@@ -1,5 +1,5 @@
+@Regression
 Feature: Shop functionality
-  @Regression
   Scenario Outline: The user add products to the cart
     Given the user is on the "<urlShopPage>"
     When the user adds the products
@@ -7,5 +7,11 @@ Feature: Shop functionality
     Then the user should see the cart page
 
     Examples:
-      | urlShopPage             |
+      | urlShopPage          |
       | angularpractice/shop |
+
+  Scenario: The user adds the quantity for a product
+    When the user adds the quantity for a product
+    And checks the correctness of the prices
+    And clicks on the checkout button
+    Then the user should see the checkout page
