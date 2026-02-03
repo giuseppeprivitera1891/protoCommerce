@@ -20,6 +20,12 @@ public class ShopPage {
     String actualCheckoutButton;
     String expectedCheckoutTextButton = "Checkout ( 2 )\n(current)";
     String actualProductTableHead;
+    String actualUnitPriceFirstProduct;
+    String actualTotalPriceFirstProduct;
+    String secondProductQuantity;
+    String actualUnitPriceSecondProduct;
+    String actualTotalPriceSecondProduct;
+    String actualTotalPrice;
     String expectedProductTableHead = "Product";
     String getFirstProductText;
     String expectedFirstProductText = "iphone X";
@@ -49,6 +55,12 @@ public class ShopPage {
     By actualTextProductTableHead = By.xpath("//th[normalize-space()='Product']");
     By firstProductText = By.xpath("//a[normalize-space()='iphone X'][1]");
     By getFirstProductQuantity = By.xpath("//a[normalize-space()='iphone X']/ancestor::tr//input");
+    By unitPriceFirstProduct = By.xpath("//strong[text() = '₹. 100000']");
+    By unitPriceSecondProduct = By.xpath("(//strong[text() = '₹. 65000'])[1]");
+    By totalPriceFirstProduct = By.xpath(("//strong[text() = '₹. 300000']"));
+    By getSecondProductQuantity = By.xpath("(//input[@id='exampleInputEmail1'])[2])");
+    By totalPriceSecondProduct = By.xpath("(//strong[text() = '₹. 65000'])[2]");
+    By getTotalPrice = By.cssSelector("//strong[text() = '₹. 365000']");
 
     public void theUserIsOnTheShopPage(String url) {
         urlShopPage = driver.getCurrentUrl();
@@ -91,13 +103,38 @@ public class ShopPage {
         getFirstProductText = driver.findElement(firstProductText).getText();
         System.out.println("The text of the first product: " + getFirstProductText);
         Assert.assertEquals(getFirstProductText, expectedFirstProductText);
-        utils.callWaitPresenceElement(tenSeconds, getFirstProductQuantity);
-      //  String pageSource = driver.getPageSource();
-      //  System.out.println("L'elemento 'iphone X' è presente nel sorgente? " + pageSource.contains("iphone X"));
+        utils.callWaitVisibility(tenSeconds, getFirstProductQuantity);
         firstProductQuantity = driver.findElement(getFirstProductQuantity);
         firstProductQuantity.clear();
         firstProductQuantity.sendKeys(sendFirstFirstQuantity);
         firstProductQuantity.getText();
         System.out.println("First product quantity is: " + firstProductQuantity);
+    }
+
+    public void correctnessOfThePrices() {
+        // Gets the unit price of the first product and checks it with expected unit price
+        actualUnitPriceFirstProduct = driver.findElement(unitPriceFirstProduct).getText();
+        System.out.println("The actual price first product: " + actualUnitPriceFirstProduct);
+        Assert.assertEquals(actualUnitPriceFirstProduct, expectedUnitPriceFirstProduct);
+        // Gets the total price of the first product and checks it with expected total price
+        actualTotalPriceFirstProduct = driver.findElement(totalPriceFirstProduct).getText();
+        System.out.println("The actual total price first product: " + actualTotalPriceFirstProduct);
+        Assert.assertEquals(actualTotalPriceFirstProduct, expectedTotalPriceFirstProduct);
+        // Gets the quantity of the second product and checks it with expected quantity
+        secondProductQuantity = driver.findElement(getSecondProductQuantity).getText();
+        System.out.println("The second product quantity: " + secondProductQuantity);
+        Assert.assertEquals(secondProductQuantity, expectedSecondProductQuantity);
+        // Gets the unit price of the second product and checks it with expected unit price
+        actualUnitPriceSecondProduct = driver.findElement(unitPriceSecondProduct).getText();
+        System.out.println("The actual unit price second product: " + actualUnitPriceSecondProduct);
+        Assert.assertEquals(actualUnitPriceSecondProduct, expectedUnitPriceSecondProduct);
+        // Gets the total price of the second product and checks it with expected total price
+        actualTotalPriceSecondProduct = driver.findElement(totalPriceSecondProduct).getText();
+        System.out.println("The actual total price of the second product: " + actualTotalPriceSecondProduct);
+        Assert.assertEquals(actualTotalPriceSecondProduct, expectedTotalPriceSecondProduct);
+        // Gets the total price and checks it with expected total price
+        actualTotalPrice = driver.findElement(getTotalPrice).getText();
+        System.out.println("The actual total price: " + actualTotalPrice);
+        Assert.assertEquals(actualTotalPrice, expectedTotalPrice);
     }
 }
