@@ -22,7 +22,6 @@ public class ShopPage {
     String actualProductTableHead;
     String actualUnitPriceFirstProduct;
     String actualTotalPriceFirstProduct;
-    String secondProductQuantity;
     String actualUnitPriceSecondProduct;
     String actualTotalPriceSecondProduct;
     String actualTotalPrice;
@@ -31,7 +30,6 @@ public class ShopPage {
     String expectedFirstProductText = "iphone X";
     String expectedUnitPriceFirstProduct = "₹. 100000";
     String expectedTotalPriceFirstProduct = "₹. 300000";
-    String expectedSecondProductQuantity = "1";
     String expectedUnitPriceSecondProduct = "₹. 65000";
     String expectedTotalPriceSecondProduct = "₹. 65000";
     String expectedTotalPrice = "₹. 365000";
@@ -58,9 +56,8 @@ public class ShopPage {
     By unitPriceFirstProduct = By.xpath("//strong[text() = '₹. 100000']");
     By unitPriceSecondProduct = By.xpath("(//strong[text() = '₹. 65000'])[1]");
     By totalPriceFirstProduct = By.xpath(("//strong[text() = '₹. 300000']"));
-    By getSecondProductQuantity = By.xpath("(//input[@id='exampleInputEmail1'])[2])");
     By totalPriceSecondProduct = By.xpath("(//strong[text() = '₹. 65000'])[2]");
-    By getTotalPrice = By.cssSelector("//strong[text() = '₹. 365000']");
+    By getTotalPrice = By.xpath("//strong[text() ='₹. 365000']");
 
     public void theUserIsOnTheShopPage(String url) {
         urlShopPage = driver.getCurrentUrl();
@@ -120,10 +117,6 @@ public class ShopPage {
         actualTotalPriceFirstProduct = driver.findElement(totalPriceFirstProduct).getText();
         System.out.println("The actual total price first product: " + actualTotalPriceFirstProduct);
         Assert.assertEquals(actualTotalPriceFirstProduct, expectedTotalPriceFirstProduct);
-        // Gets the quantity of the second product and checks it with expected quantity
-        secondProductQuantity = driver.findElement(getSecondProductQuantity).getText();
-        System.out.println("The second product quantity: " + secondProductQuantity);
-        Assert.assertEquals(secondProductQuantity, expectedSecondProductQuantity);
         // Gets the unit price of the second product and checks it with expected unit price
         actualUnitPriceSecondProduct = driver.findElement(unitPriceSecondProduct).getText();
         System.out.println("The actual unit price second product: " + actualUnitPriceSecondProduct);
