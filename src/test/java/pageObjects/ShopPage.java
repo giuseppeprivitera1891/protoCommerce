@@ -64,7 +64,7 @@ public class ShopPage {
     By getDeliveryText = By.cssSelector("label[for='country']");
     By location = By.id("country");
     By selectCountry = By.xpath("(//div[@class='suggestions'])[1]");
-    By getTermsCheckbox = By.id("checkbox2");
+    By getTermsCheckbox = By.xpath("//label[@for='checkbox2']");
 
     public void shop_page(String url) {
         urlShopPage = driver.getCurrentUrl();
@@ -161,6 +161,7 @@ public class ShopPage {
 
     public void accept_the_terms() {
         termsCheckbox = driver.findElement(getTermsCheckbox);
+        utils.callWaitVisibility(tenSeconds, getTermsCheckbox);
         termsCheckbox.click();
     }
 }

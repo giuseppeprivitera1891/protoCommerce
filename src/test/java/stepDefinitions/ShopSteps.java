@@ -34,7 +34,6 @@ public class ShopSteps {
         shopPage.add_quantity_for_a_product();
     }
 
-
     @And("checks the correctness of the prices")
     public void checks_the_correctness_of_the_prices() {
         shopPage.correctness_of_the_prices();
