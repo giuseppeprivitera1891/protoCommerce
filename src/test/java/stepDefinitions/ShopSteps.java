@@ -58,4 +58,9 @@ public class ShopSteps {
     public void accepts_the_terms() {
         shopPage.accept_the_terms();
     }
+
+    @And("clicks on purchase button")
+    public void clicks_on_purchase_button() {
+        shopPage.click_purchase_button();
+    }
 }

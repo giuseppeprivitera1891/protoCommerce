@@ -45,7 +45,8 @@ public class ShopPage {
     int thirtySeconds = 30;
 
     List<WebElement> products;
-    WebElement checkoutButton, firstProductQuantity, checkoutFinalButton, deliveryLocation, termsCheckbox;
+    WebElement checkoutButton, firstProductQuantity, checkoutFinalButton, deliveryLocation,
+            termsCheckbox, purchaseButton;
 
     By cardProducts = By.xpath("//div[@class='card h-100']");
     By cardTitle = By.cssSelector("h4[class='card-title']");
@@ -65,6 +66,7 @@ public class ShopPage {
     By location = By.id("country");
     By selectCountry = By.xpath("(//div[@class='suggestions'])[1]");
     By getTermsCheckbox = By.xpath("//label[@for='checkbox2']");
+    By getPurchaseButton = By.cssSelector("input[type='submit']");
 
     public void shop_page(String url) {
         urlShopPage = driver.getCurrentUrl();
@@ -164,4 +166,11 @@ public class ShopPage {
         utils.callWaitVisibility(tenSeconds, getTermsCheckbox);
         termsCheckbox.click();
     }
+
+    public void click_purchase_button() {
+        purchaseButton = driver.findElement(getPurchaseButton);
+        Assert.assertTrue(purchaseButton.isEnabled());
+        Assert.assertTrue(purchaseButton.getText().contains("Purchase"));
+    }
+
 }
