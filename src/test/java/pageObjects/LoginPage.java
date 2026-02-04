@@ -15,6 +15,8 @@ public class LoginPage {
     String actualTextModal;
     String expectedTextAlert = "You will be limited to only fewer functionalities of the app. Proceed?";
     String expectedTitlePage = "ProtoCommerce";
+    String errorMessage;
+    String getErrorMessageText = "Incorrect";
     int oneSecond = 1;
     int fiveSeconds = 5;
     int thirtySeconds = 30;
@@ -32,6 +34,7 @@ public class LoginPage {
     By okayModalButton = By.id("okayBtn");
     By terms = By.id("terms");
     By submitButton = By.id("signInBtn");
+    By getErrorMessage = By.xpath("//strong[normalize-space()='Incorrect']");
     
     
     public void getUrl(String url) {
@@ -87,5 +90,12 @@ public class LoginPage {
         String titleShopPage = driver.getTitle();
         System.out.println("The title of the shop page is " + titleShopPage);
         Assert.assertEquals(titleShopPage, expectedTitlePage);
+    }
+
+    public void see_error_message() {
+        utils.callWaitVisibility(fiveSeconds, getErrorMessage);
+        errorMessage = driver.findElement(getErrorMessage).getText().trim();
+        System.out.println("The error message is :" + errorMessage);
+        Assert.assertEquals(errorMessage, getErrorMessageText);
     }
 }
