@@ -3,6 +3,7 @@ package utility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -11,6 +12,7 @@ import java.time.Duration;
 public class GenericUtils {
     public WebDriver driver = DriverManager.getDriver();
     WebDriverWait wait;
+    WebElement clickable;
 
     public void callWaitVisibility(int seconds, By locator) {
         wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
@@ -33,4 +35,10 @@ public class GenericUtils {
         wait.until(ExpectedConditions.titleIs(title));
     }
 
+    public void performClick(By locator) {
+        clickable = driver.findElement(locator);
+        new Actions(driver)
+                .click(clickable)
+                .perform();
+    }
 }
