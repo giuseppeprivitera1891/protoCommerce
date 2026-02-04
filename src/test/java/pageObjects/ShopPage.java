@@ -39,6 +39,9 @@ public class ShopPage {
     String expectedDeliveryText = "Please choose your delivery location.\n" +
             "Then click on purchase button";
     String sendFirstFirstQuantity = "3";
+    String successMessage;
+    String getSuccessMessageText = "Success! " +
+            "Thank you! Your order will be delivered in next few weeks :-).";
     int  twoSeconds = 2;
     int fiveSeconds = 5;
     int tenSeconds = 10;
@@ -67,6 +70,7 @@ public class ShopPage {
     By selectCountry = By.xpath("(//div[@class='suggestions'])[1]");
     By getTermsCheckbox = By.xpath("//label[@for='checkbox2']");
     By getPurchaseButton = By.cssSelector("input[type='submit']");
+    By getSuccessMessage = By.xpath("//div[@class='alert alert-success alert-dismissible']");
 
     public void shop_page(String url) {
         urlShopPage = driver.getCurrentUrl();
@@ -174,4 +178,10 @@ public class ShopPage {
         purchaseButton.click();
     }
 
+    public void success_message() {
+        successMessage = driver.findElement(getSuccessMessage).getText().replace("×", "").trim();
+        utils.callWaitVisibility(tenSeconds, getSuccessMessage);
+        System.out.println("The text of the success message is : " + successMessage);
+        Assert.assertEquals(successMessage, getSuccessMessageText);
+    }
 }

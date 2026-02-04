@@ -63,4 +63,9 @@ public class ShopSteps {
     public void clicks_on_purchase_button() {
         shopPage.click_purchase_button();
     }
+
+    @Then("the user should see a success message")
+    public void the_user_should_see_a_success_message() {
+        shopPage.success_message();
+    }
 }
