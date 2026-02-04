@@ -17,7 +17,7 @@ public class CheckoutPage {
     By location = By.id("country");
     By selectCountry = By.xpath("(//div[@class='suggestions'])[1]");
 
-    public void chooseDeliveryLocation(String myDeliveryLocation) {
+    public void choose_delivery_location(String myDeliveryLocation) {
         deliveryLocation = driver.findElement(location);
         deliveryLocation.sendKeys(myDeliveryLocation);
         utils.callWaitVisibility(fiveSeconds, selectCountry);
