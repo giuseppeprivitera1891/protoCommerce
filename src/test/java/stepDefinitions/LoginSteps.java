@@ -22,17 +22,17 @@ public class LoginSteps {
 
     @And("selects the type of user and accept the terms")
     public void selects_the_type_of_user_and_accept_the_terms() {
-        loginPage.selectsTypeOfUser();
-        loginPage.acceptTheTerms();
+        loginPage.select_type_of_user();
+        loginPage.accept_the_terms();
     }
 
     @And("clicks on submit button")
     public void clicks_on_submit_button() {
-        loginPage.clickSubmitButton();
+        loginPage.click_submit_button();
     }
 
     @Then("the user should see the shop page")
     public void the_user_should_see_the_shop_page() {
-        loginPage.shopPage();
+        loginPage.shop_page();
     }
 }

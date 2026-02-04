@@ -39,13 +39,17 @@ public class ShopPage {
     String expectedDeliveryText = "Please choose your delivery location.\n" +
             "Then click on purchase button";
     String sendFirstFirstQuantity = "3";
+    String successMessage;
+    String getSuccessMessageText = "Success! " +
+            "Thank you! Your order will be delivered in next few weeks :-).";
     int  twoSeconds = 2;
     int fiveSeconds = 5;
     int tenSeconds = 10;
     int thirtySeconds = 30;
 
     List<WebElement> products;
-    WebElement checkoutButton, firstProductQuantity, checkoutFinalButton;
+    WebElement checkoutButton, firstProductQuantity, checkoutFinalButton, deliveryLocation,
+            termsCheckbox, purchaseButton;
 
     By cardProducts = By.xpath("//div[@class='card h-100']");
     By cardTitle = By.cssSelector("h4[class='card-title']");
@@ -62,15 +66,20 @@ public class ShopPage {
     By getCheckoutFinaTextButton = By.cssSelector("button[class='btn btn-success']");
     By getCheckoutFinalButton = By.cssSelector("button[class='btn btn-success']");
     By getDeliveryText = By.cssSelector("label[for='country']");
+    By location = By.id("country");
+    By selectCountry = By.xpath("(//div[@class='suggestions'])[1]");
+    By getTermsCheckbox = By.xpath("//label[@for='checkbox2']");
+    By getPurchaseButton = By.cssSelector("input[type='submit']");
+    By getSuccessMessage = By.xpath("//div[@class='alert alert-success alert-dismissible']");
 
-    public void theUserIsOnTheShopPage(String url) {
+    public void shop_page(String url) {
         urlShopPage = driver.getCurrentUrl();
         System.out.println("The URL of shop page is " + urlShopPage);
         Assert.assertTrue(urlShopPage.contains(url));
         utils.callWaitVisibility(twoSeconds, cardProducts);
     }
 
-    public void theUserAddsTheProducts() {
+    public void add_products() {
         // Gets the list of products
         products = driver.findElements(cardProducts);
 
@@ -85,7 +94,7 @@ public class ShopPage {
         }
     }
 
-    public void clickOnTheCartButton() {
+    public void click_on_the_cart_button() {
         actualCheckoutButton = driver.findElement(actualTextCheckoutButton).getText();
         System.out.println("The text of checkout button is " + actualCheckoutButton);
         Assert.assertEquals(actualCheckoutButton, expectedCheckoutTextButton);
@@ -93,13 +102,13 @@ public class ShopPage {
         checkoutButton.click();
     }
 
-    public void cartPage() {
+    public void cart_page() {
         actualProductTableHead = driver.findElement(actualTextProductTableHead).getText();
         utils.callWaitPollingVisibility(thirtySeconds, fiveSeconds, actualTextProductTableHead);
         Assert.assertEquals(actualProductTableHead, expectedProductTableHead);
     }
 
-    public void addQuantityForAProduct() {
+    public void add_quantity_for_a_product() {
         utils.callWaitVisibility(tenSeconds, firstProductText);
         getFirstProductText = driver.findElement(firstProductText).getText();
         System.out.println("The text of the first product: " + getFirstProductText);
@@ -109,7 +118,7 @@ public class ShopPage {
         firstProductQuantity.sendKeys(sendFirstFirstQuantity);
     }
 
-    public void correctnessOfThePrices() {
+    public void correctness_of_the_prices() {
         // Gets the unit price of the first product and checks it with expected unit price
         actualUnitPriceFirstProduct = driver.findElement(unitPriceFirstProduct).getText();
         System.out.println("The actual price first product: " + actualUnitPriceFirstProduct);
@@ -132,7 +141,7 @@ public class ShopPage {
         Assert.assertEquals(actualTotalPrice, expectedTotalPrice);
     }
 
-    public void clickOnTheCheckoutButton() {
+    public void click_on_the_checkout_button() {
         // Gets the text checkout button and checks it with expected text
         actualCheckoutTextButton =  driver.findElement(getCheckoutFinaTextButton).getText();
         System.out.println("The text of the Checkout button: " + actualCheckoutTextButton);
@@ -142,10 +151,37 @@ public class ShopPage {
         checkoutFinalButton.click();
     }
 
-    public void checkoutPage() {
+    public void checkout_page() {
         // Gets the text delivery and checks it with expected text
         actualDeliveryText = driver.findElement(getDeliveryText).getText();
         System.out.println("The delivery text: " + actualDeliveryText);
         Assert.assertEquals(actualDeliveryText, expectedDeliveryText);
+    }
+
+    public void choose_delivery_location(String myDeliveryLocation) {
+        deliveryLocation = driver.findElement(location);
+        deliveryLocation.sendKeys(myDeliveryLocation);
+        utils.callWaitVisibility(tenSeconds, selectCountry);
+        utils.performClick(selectCountry);
+    }
+
+    public void accept_the_terms() {
+        termsCheckbox = driver.findElement(getTermsCheckbox);
+        utils.callWaitVisibility(tenSeconds, getTermsCheckbox);
+        termsCheckbox.click();
+    }
+
+    public void click_purchase_button() {
+        purchaseButton = driver.findElement(getPurchaseButton);
+        Assert.assertTrue(purchaseButton.isEnabled());
+        System.out.println("The purchase button is enabled");
+        purchaseButton.click();
+    }
+
+    public void success_message() {
+        successMessage = driver.findElement(getSuccessMessage).getText().replace("×", "").trim();
+        utils.callWaitVisibility(tenSeconds, getSuccessMessage);
+        System.out.println("The text of the success message is : " + successMessage);
+        Assert.assertEquals(successMessage, getSuccessMessageText);
     }
 }

@@ -44,7 +44,7 @@ public class LoginPage {
         System.out.println("The username is " + user + " and password is " + pass);
     }
 
-    public void selectsTypeOfUser() {
+    public void select_type_of_user() {
         // Gets the "User" label text
         userRadioLabel = driver.findElement(getUserRadioLabel).getText();
         // Checks if the actual result is the same of expected result
@@ -66,7 +66,7 @@ public class LoginPage {
         utils.callWaitInvisibility(fiveSeconds, modal);
     }
 
-    public void acceptTheTerms() {
+    public void accept_the_terms() {
         // Gets the checkbox
         termCheckbox = driver.findElement(terms);
         // Waits the checkbox i s clickable
@@ -76,13 +76,13 @@ public class LoginPage {
         Assert.assertTrue(termCheckbox.isSelected());
     }
 
-    public void clickSubmitButton() {
+    public void click_submit_button() {
         signInButton = driver.findElement(submitButton);
         Assert.assertTrue(signInButton.isDisplayed());
         signInButton.click();
     }
 
-    public void shopPage() {
+    public void shop_page() {
         utils.callWaitTitle(fiveSeconds, expectedTitlePage);
         String titleShopPage = driver.getTitle();
         System.out.println("The title of the shop page is " + titleShopPage);
