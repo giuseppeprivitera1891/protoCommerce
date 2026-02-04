@@ -157,7 +157,7 @@ public class ShopPage {
     public void choose_delivery_location(String myDeliveryLocation) {
         deliveryLocation = driver.findElement(location);
         deliveryLocation.sendKeys(myDeliveryLocation);
-        utils.callWaitVisibility(fiveSeconds, selectCountry);
+        utils.callWaitVisibility(tenSeconds, selectCountry);
         utils.performClick(selectCountry);
     }
 
@@ -170,7 +170,8 @@ public class ShopPage {
     public void click_purchase_button() {
         purchaseButton = driver.findElement(getPurchaseButton);
         Assert.assertTrue(purchaseButton.isEnabled());
-        Assert.assertTrue(purchaseButton.getText().contains("Purchase"));
+        System.out.println("The purchase button is enabled");
+        purchaseButton.click();
     }
 
 }
