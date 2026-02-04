@@ -54,4 +54,9 @@ public class ShopSteps {
     public void the_user_chooses_the_class(String deliveryLocation) {
         shopPage.choose_delivery_location(deliveryLocation);
     }
+
+    @And("accepts the terms")
+    public void accepts_the_terms() {
+        shopPage.accept_the_terms();
+    }
 }
