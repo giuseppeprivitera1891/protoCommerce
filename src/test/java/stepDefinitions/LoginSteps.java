@@ -35,4 +35,9 @@ public class LoginSteps {
     public void the_user_should_see_the_shop_page() {
         loginPage.shop_page();
     }
+
+    @Then("the user should see an error message")
+    public void the_user_should_see_an_error_message() {
+        loginPage.see_error_message();
+    }
 }
