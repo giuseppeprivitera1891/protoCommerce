@@ -45,7 +45,7 @@ public class ShopPage {
     int thirtySeconds = 30;
 
     List<WebElement> products;
-    WebElement checkoutButton, firstProductQuantity, checkoutFinalButton;
+    WebElement checkoutButton, firstProductQuantity, checkoutFinalButton, deliveryLocation;
 
     By cardProducts = By.xpath("//div[@class='card h-100']");
     By cardTitle = By.cssSelector("h4[class='card-title']");
@@ -62,6 +62,8 @@ public class ShopPage {
     By getCheckoutFinaTextButton = By.cssSelector("button[class='btn btn-success']");
     By getCheckoutFinalButton = By.cssSelector("button[class='btn btn-success']");
     By getDeliveryText = By.cssSelector("label[for='country']");
+    By location = By.id("country");
+    By selectCountry = By.xpath("(//div[@class='suggestions'])[1]");
 
     public void shop_page(String url) {
         urlShopPage = driver.getCurrentUrl();
@@ -147,5 +149,12 @@ public class ShopPage {
         actualDeliveryText = driver.findElement(getDeliveryText).getText();
         System.out.println("The delivery text: " + actualDeliveryText);
         Assert.assertEquals(actualDeliveryText, expectedDeliveryText);
+    }
+
+    public void choose_delivery_location(String myDeliveryLocation) {
+        deliveryLocation = driver.findElement(location);
+        deliveryLocation.sendKeys(myDeliveryLocation);
+        utils.callWaitVisibility(fiveSeconds, selectCountry);
+        utils.performClick(selectCountry);
     }
 }

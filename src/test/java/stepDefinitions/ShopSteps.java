@@ -49,4 +49,9 @@ public class ShopSteps {
     public void the_user_should_see_the_checkout_page() {
         shopPage.checkout_page();
     }
+
+    @When("the user chooses the {string}")
+    public void the_user_chooses_the_class(String deliveryLocation) {
+        shopPage.choose_delivery_location(deliveryLocation);
+    }
 }
