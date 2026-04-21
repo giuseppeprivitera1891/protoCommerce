@@ -4,16 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import utility.DriverManager;
-import utility.GenericUtils;
+import utility.BaseTest;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class ShopPage {
-    public WebDriver driver = DriverManager.getDriver();
-    public GenericUtils utils = new GenericUtils();
-
+public class ShopPage extends BaseTest {
     // List of our products
     List<String> myProduct = Arrays.asList("iphone X", "Nokia Edge");
     String urlShopPage;
@@ -76,7 +72,7 @@ public class ShopPage {
         urlShopPage = driver.getCurrentUrl();
         System.out.println("The URL of shop page is " + urlShopPage);
         Assert.assertTrue(urlShopPage.contains(url));
-        utils.callWaitVisibility(twoSeconds, cardProducts);
+        callWaitVisibility(twoSeconds, cardProducts);
     }
 
     public void add_products() {
@@ -104,12 +100,12 @@ public class ShopPage {
 
     public void cart_page() {
         actualProductTableHead = driver.findElement(actualTextProductTableHead).getText();
-        utils.callWaitPollingVisibility(thirtySeconds, fiveSeconds, actualTextProductTableHead);
+        callWaitPollingVisibility(thirtySeconds, fiveSeconds, actualTextProductTableHead);
         Assert.assertEquals(actualProductTableHead, expectedProductTableHead);
     }
 
     public void add_quantity_for_a_product() {
-        utils.callWaitVisibility(tenSeconds, firstProductText);
+        callWaitVisibility(tenSeconds, firstProductText);
         getFirstProductText = driver.findElement(firstProductText).getText();
         System.out.println("The text of the first product: " + getFirstProductText);
         Assert.assertEquals(getFirstProductText, expectedFirstProductText);
@@ -161,13 +157,13 @@ public class ShopPage {
     public void choose_delivery_location(String myDeliveryLocation) {
         deliveryLocation = driver.findElement(location);
         deliveryLocation.sendKeys(myDeliveryLocation);
-        utils.callWaitVisibility(tenSeconds, selectCountry);
-        utils.performClick(selectCountry);
+        callWaitVisibility(tenSeconds, selectCountry);
+        performClick(selectCountry);
     }
 
     public void accept_the_terms() {
         termsCheckbox = driver.findElement(getTermsCheckbox);
-        utils.callWaitVisibility(tenSeconds, getTermsCheckbox);
+        callWaitVisibility(tenSeconds, getTermsCheckbox);
         termsCheckbox.click();
     }
 
@@ -180,7 +176,7 @@ public class ShopPage {
 
     public void success_message() {
         successMessage = driver.findElement(getSuccessMessage).getText().replace("×", "").trim();
-        utils.callWaitVisibility(tenSeconds, getSuccessMessage);
+        callWaitVisibility(tenSeconds, getSuccessMessage);
         System.out.println("The text of the success message is : " + successMessage);
         Assert.assertEquals(successMessage, getSuccessMessageText);
     }

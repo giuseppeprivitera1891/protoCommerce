@@ -1,15 +1,11 @@
 package pageObjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import utility.DriverManager;
-import utility.GenericUtils;
+import utility.BaseTest;
 
-public class LoginPage {
-    public WebDriver driver = DriverManager.getDriver();
-    public GenericUtils utils = new GenericUtils();
+public class LoginPage extends BaseTest {
     String userTypeLabel = "User";
     String userRadioLabel;
     String actualTextModal;
@@ -57,7 +53,7 @@ public class LoginPage {
         // Checks if the radiobutton is selected
         Assert.assertTrue(userRadioButtonClick.isSelected());
         // Waits the modal is visible
-        utils.callWaitVisibility(oneSecond, modal);
+        callWaitVisibility(oneSecond, modal);
         // Gets the text of the modal
         actualTextModal = driver.findElement(modalBody).getText();
         // Prints the text of the modal
@@ -66,14 +62,14 @@ public class LoginPage {
         Assert.assertEquals(actualTextModal, expectedTextAlert);
         driver.findElement(okayModalButton).click();
         // Waits the modal is invisible
-        utils.callWaitInvisibility(fiveSeconds, modal);
+        callWaitInvisibility(fiveSeconds, modal);
     }
 
     public void accept_the_terms() {
         // Gets the checkbox
         termCheckbox = driver.findElement(terms);
         // Waits the checkbox i s clickable
-        utils.callWaitPollingVisibility(thirtySeconds, fiveSeconds, terms);
+        callWaitPollingVisibility(thirtySeconds, fiveSeconds, terms);
         termCheckbox.click();
         // Checks if the checkbox is selected
         Assert.assertTrue(termCheckbox.isSelected());
@@ -86,14 +82,14 @@ public class LoginPage {
     }
 
     public void shop_page() {
-        utils.callWaitTitle(fiveSeconds, expectedTitlePage);
+        callWaitTitle(fiveSeconds, expectedTitlePage);
         String titleShopPage = driver.getTitle();
         System.out.println("The title of the shop page is " + titleShopPage);
         Assert.assertEquals(titleShopPage, expectedTitlePage);
     }
 
     public void see_error_message() {
-        utils.callWaitVisibility(fiveSeconds, getErrorMessage);
+        callWaitVisibility(fiveSeconds, getErrorMessage);
         errorMessage = driver.findElement(getErrorMessage).getText().trim();
         System.out.println("The error message is :" + errorMessage);
         Assert.assertEquals(errorMessage, getErrorMessageText);

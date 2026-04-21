@@ -6,29 +6,28 @@ import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import utility.DriverManager;
+import utility.BaseTest;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class Hooks {
+public class Hooks extends BaseTest {
     @BeforeAll
     public static void beforeAll() {
-        DriverManager.initDriver();
+        initDriver();
     }
 
     @AfterAll
     public static void afterAll() {
-        DriverManager.quitDriver();
+        BaseTest.quitDriver();
     }
 
     @After
     public void afterScenario(Scenario scenario) {
         if (scenario.isFailed()) {
-            WebDriver driver = DriverManager.getDriver();
+            driver = getDriver();
 
             // Take a screenshot
             TakesScreenshot ts = (TakesScreenshot) driver;
