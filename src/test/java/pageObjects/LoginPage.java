@@ -3,9 +3,9 @@ package pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import utility.BaseTest;
+import utility.Utils;
 
-public class LoginPage extends BaseTest {
+public class LoginPage extends Utils {
     String userTypeLabel = "User";
     String userRadioLabel;
     String actualTextModal;

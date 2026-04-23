@@ -1,15 +1,14 @@
 package pageObjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import utility.BaseTest;
+import utility.Utils;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class ShopPage extends BaseTest {
+public class ShopPage extends Utils {
     // List of our products
     List<String> myProduct = Arrays.asList("iphone X", "Nokia Edge");
     String urlShopPage;

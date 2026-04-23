@@ -6,14 +6,15 @@ import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import utility.BaseTest;
+import utility.DriverManager;
+import utility.Utils;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class Hooks extends BaseTest {
+public class Hooks extends Utils {
     @BeforeAll
     public static void beforeAll() {
         initDriver();
@@ -21,7 +22,7 @@ public class Hooks extends BaseTest {
 
     @AfterAll
     public static void afterAll() {
-        BaseTest.quitDriver();
+        DriverManager.quitDriver();
     }
 
     @After
