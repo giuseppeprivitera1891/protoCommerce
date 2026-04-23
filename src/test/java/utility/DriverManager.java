@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class BaseTest {
+public class DriverManager {
     public static WebDriver driver;
     WebDriverWait wait;
     WebElement clickable;
